@@ -8,12 +8,17 @@ import datetime
 import sys
 import os
 import pickle as pkl
+from tqdm import tqdm
 
 from gtwc_class import GTWC
 from make_argparser import make_parser
 from timer_class import Timer
 from test_model import test_model
 
+# cross-entropy loss with clipping to help prevent NAN
+def custom_CE_loss(preds, targets):
+    preds = F.softmax(preds, dim=1)
+    return F.nll_loss(torch.log(preds.clip(1e-13, 1-1e-13)), targets.long()) # clip to avoid log(0)
 
 if __name__=='__main__':
     parser, _ = make_parser()
@@ -27,7 +32,7 @@ if __name__=='__main__':
     sys.stdout=outfile
 
     # Make parameters that have to be calculated using other parameters
-    conf.knowledge_vec_len = conf.M + 2*(conf.T-1) + 1 
+    conf.knowledge_vec_len = conf.M + 2*(conf.T-1)
     conf.d_model = 32
     conf.noise_pwr_ff = 10**(-conf.snr_ff/10)
     conf.use_belief_network = False
@@ -74,23 +79,26 @@ if __name__=='__main__':
     bit_errors = []
     block_errors = []
     ctr = 0
+    map_vec = 2**(torch.arange(conf.M)).flip(0).float().to(device)
+    pbar = tqdm(total = num_epochs-epoch_start)
     for epoch in range(epoch_start, num_epochs):
         gtwc.train()
         losses = []
         # Since bs >> 2^M, we will see sufficiently many examples of each.
         # message. Thebits_to_one_hot conversion takes orders of magnitude more 
         # time to execute than everything else, so I had to move it out here.
-        bitstreams_1 = torch.randint(0, 2, (bs, conf.K)).to(device)
-        bitstreams_2 = torch.randint(0, 2, (bs, conf.K)).to(device)
+        bitstreams_1 = torch.randint(0, 2, (bs, conf.K), device=device)
+        bitstreams_2 = torch.randint(0, 2, (bs, conf.K), device=device)
         b1, b2 = bitstreams_1.view(bs,-1,conf.M), bitstreams_2.view(bs,-1,conf.M)
-        b_one_hot_1 = gtwc.bits_to_one_hot(b1).float()
-        b_one_hot_2 = gtwc.bits_to_one_hot(b2).float()
+        b_target_1 = b1.view(-1, conf.M).float() @ map_vec
+        b_target_2 = b2.view(-1, conf.M).float() @ map_vec
         for i in range(conf.num_iters_per_epoch):
             optimizer.zero_grad()
             output_1, output_2 = gtwc(b1, b2)
             output_1 = output_1.view(bs*gtwc.num_blocks, 2**gtwc.M)
             output_2 = output_2.view(bs*gtwc.num_blocks, 2**gtwc.M)
-            loss = loss_fn(output_1, b_one_hot_1) + loss_fn(output_2, b_one_hot_2)
+            # loss = loss_fn(output_1, b_one_hot_1) + loss_fn(output_2, b_one_hot_2)
+            loss = custom_CE_loss(output_1, b_target_1) + custom_CE_loss(output_2, b_target_2)
 
             loss.backward()
             torch.nn.utils.clip_grad_norm_(gtwc.parameters(), grad_clip)

@@ -26,7 +26,7 @@ def make_parser():
 
     parser.add_argument('--optim-lr', type=float, default=.001, help='optimizer learning rate')
     parser.add_argument('--optim-weight-decay', type=float, default=.01, help='decay for AdamW optimizer')
-    parser.add_argument('--num-epochs', type=int, default=1200)
+    parser.add_argument('--num-epochs', type=int, default=1000)
     parser.add_argument('--num-test-epochs', type=int, default=1)
     parser.add_argument('--num-valid-epochs', type=int, default=1000)
     parser.add_argument( '--batch-size', type=int, default=int(1E4))  
