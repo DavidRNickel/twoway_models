@@ -1,0 +1,24 @@
+np1:  0.7943282347242815
+np2:  0.01
+Twoway_coding(
+  (encoder1_RNN): GRU(4, 50, num_layers=2, batch_first=True)
+  (encoder1_linear): Linear(in_features=50, out_features=1, bias=True)
+  (encoder2_RNN): GRU(4, 50, num_layers=2, batch_first=True)
+  (encoder2_linear): Linear(in_features=50, out_features=1, bias=True)
+  (decoder1_RNN): GRU(5, 50, num_layers=2, batch_first=True, bidirectional=True)
+  (decoder1_linear): Linear(in_features=100, out_features=8, bias=True)
+  (decoder2_RNN): GRU(5, 50, num_layers=2, batch_first=True, bidirectional=True)
+  (decoder2_linear): Linear(in_features=100, out_features=8, bias=True)
+)
+Before training 
+weight_power1:  [1. 1. 1. 1. 1. 1. 1. 1. 1.]
+weight_power2:  [1. 1. 1. 1. 1. 1. 1. 1. 1.]
+weight1_merge_fwd:  [1. 1. 1. 1. 1. 1. 1. 1. 1.]
+weight1_merge_bwd:  [1. 1. 1. 1. 1. 1. 1. 1. 1.]
+weight2_merge_fwd:  [1. 1. 1. 1. 1. 1. 1. 1. 1.]
+weight2_merge_bwd:  [1. 1. 1. 1. 1. 1. 1. 1. 1.]
+
+Device: cuda:0
+N_iter: 400
+Epoch: 0, Iter: 0 out of 400, Loss: 4.4354, Time: 2
+Epoch: 0, Iter: 100 out of 400, Loss: 0.3415, Time: 87

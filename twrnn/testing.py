@@ -9,13 +9,14 @@ from params import params
 from twrnn_class import Twoway_coding
 from utils import *
 from test_model import test_model
+from make_argparser import make_parser
 
 if __name__=='__main__':
 
-    parameter = params()
+    parser, _ = make_parser()
+    parameter = parser.parse_args(sys.argv[1:])
     use_cuda = parameter.use_cuda and torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda else "cpu")
-    parameter.device = device
     model = Twoway_coding(parameter).to(device)
     ckpt = torch.load(parameter.loadfile)
     model.load_state_dict(ckpt['model_state_dict'])

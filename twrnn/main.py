@@ -74,7 +74,7 @@ if __name__=='__main__':
 
     # Training
     num_epoch = 100
-    clipping_value = 1
+    clipping_value = parameter.grad_clip
     
     print('Before training ')
     print('weight_power1: ', model.weight_power1_normalized.cpu().detach().numpy().round(3))
