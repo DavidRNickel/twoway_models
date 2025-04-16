@@ -20,7 +20,7 @@ if __name__=='__main__':
     sys.stdout=outfile
 
     # Make parameters that have to be calculated using other parameters
-    conf.knowledge_vec_len = conf.M + 2*(conf.T-1) + 1 
+    conf.knowledge_vec_len = conf.M + 2*(conf.T-1)
     conf.d_model = 32
     conf.noise_pwr_ff = 10**(-conf.snr_ff/10)
     conf.use_belief_network = False

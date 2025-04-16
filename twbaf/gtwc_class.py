@@ -8,9 +8,6 @@ from torch import nn
 import torch.nn.functional as F
 
 from attention_network import general_attention_network
-from timer_class import Timer
-
-timer = Timer()
 
 # constants
 ONE_OVER_SQRT_TWO = 1/np.sqrt(2)

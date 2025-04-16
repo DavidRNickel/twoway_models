@@ -14,8 +14,8 @@ def test_model(model, conf, show_progress_interval=None):
     
     with torch.no_grad():
         for e in range(conf.num_test_epochs):
-            bits_1 = torch.randint(0, 2, (conf.test_batch_size, conf.K)).to(conf.device)
-            bits_2 = torch.randint(0, 2, (conf.test_batch_size, conf.K)).to(conf.device)
+            bits_1 = torch.randint(0, 2, (conf.test_batch_size, conf.K), device=conf.device)
+            bits_2 = torch.randint(0, 2, (conf.test_batch_size, conf.K), device=conf.device)
             b1 = bits_1.view(conf.test_batch_size, -1, conf.M)
             b2 = bits_2.view(conf.test_batch_size, -1, conf.M)
             output_1, output_2 = model(b1, b2)

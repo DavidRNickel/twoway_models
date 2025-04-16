@@ -10,8 +10,8 @@ def calc_mean_and_std(model, conf):
     model.eval()
     with torch.no_grad():
         for _ in range(conf.num_valid_epochs):
-            bits_1 = torch.randint(0, 2, (conf.test_batch_size, conf.K)).to(conf.device)
-            bits_2 = torch.randint(0, 2, (conf.test_batch_size, conf.K)).to(conf.device)
+            bits_1 = torch.randint(0, 2, (conf.test_batch_size, conf.K), device=conf.device)
+            bits_2 = torch.randint(0, 2, (conf.test_batch_size, conf.K), device=conf.device)
             b1 = bits_1.view(conf.test_batch_size, -1, conf.M)
             b2 = bits_2.view(conf.test_batch_size, -1, conf.M)
             _, _= model(b1, b2)

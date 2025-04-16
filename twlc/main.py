@@ -33,7 +33,6 @@ if __name__=='__main__':
     parser, _ = make_parser()
     conf = parser.parse_args(sys.argv[1:])
     device = conf.device
-    timer = Timer()
 
     if conf.is_one_way_active and conf.is_one_way_passive:
         raise AssertionError('Cannot have both active and passive feedback!')
@@ -128,16 +127,16 @@ if __name__=='__main__':
         for i in range(conf.num_iters_per_epoch):
             
             # Make the bitstreams
-            bitstreams_1 = torch.randint(0, 2, (bs, conf.K)).to(device)
+            bitstreams_1 = torch.randint(0, 2, (bs, conf.K), device=device)
             b_target_1 = bitstreams_1.view(-1, conf.M).float() @ map_vec
             if conf.is_two_way:
-                bitstreams_2 = torch.randint(0, 2, (bs, conf.K)).to(device)
+                bitstreams_2 = torch.randint(0, 2, (bs, conf.K), device=device)
                 b_target_2 = bitstreams_2.view(-1, conf.M).float() @ map_vec
             else:
                 # Not used in one_way_passive. bitstreams_2 is used as an input
                 # for the feedback encoder to keep the code concise; the 
                 # corresponding weights atrophy and don't impact overall performance.
-                bitstreams_2 = torch.zeros(bs, conf.K).to(device)
+                bitstreams_2 = torch.zeros((bs, conf.K), device=device)
                 b_target_2 = bitstreams_2.view(-1, conf.M).float() @ map_vec
 
             optimizer.zero_grad()

@@ -36,15 +36,13 @@ class params():
 
         # Learning parameters
         self.batch_size = int(2.5e4) 
-        # self.batch_size = int(1E5)
         self.learning_rate = 0.01 
         self.use_cuda = True
 
         self.SNR1 = 1
         self.SNR2 = 30
-        # self.save_results_to = f'm3t9/ff_1/fb_{int(self.SNR2)}/'
-        self.save_results_to = 'sensitivity/fix_snr1_1_snr2_15/snr2_30'
+        self.save_dir = 'sensitivity/fix_snr1_1_snr2_15/snr2_30'
         self.train_log_file = 'train_log.txt'
         self.test_log_file = 'test_log.txt'
-        self.loadfile = 'm3t9/ff_1/fb_15/20250308-001548.pt'
+        self.loadfile = None
         self.use_tensorboard = False

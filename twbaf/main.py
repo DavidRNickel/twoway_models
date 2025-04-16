@@ -12,7 +12,6 @@ from tqdm import tqdm
 
 from gtwc_class import GTWC
 from make_argparser import make_parser
-from timer_class import Timer
 from test_model import test_model
 
 # cross-entropy loss with clipping to help prevent NAN
@@ -24,7 +23,6 @@ if __name__=='__main__':
     parser, _ = make_parser()
     conf = parser.parse_args(sys.argv[1:])
     device = conf.device
-    timer = Timer()
 
     os.makedirs(conf.save_dir, exist_ok=True)
     orig_stdout = sys.stdout
@@ -49,6 +47,8 @@ if __name__=='__main__':
 
     
     gtwc = GTWC(conf).to(device)
+    if 'cuda' in device: # just in case the device is something like cuda:0
+        torch.backends.cudnn.benchmark = True
     nowtime = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
 
     if conf.use_tensorboard:
@@ -82,6 +82,7 @@ if __name__=='__main__':
     map_vec = 2**(torch.arange(conf.M)).flip(0).float().to(device)
     pbar = tqdm(total = num_epochs-epoch_start)
     for epoch in range(epoch_start, num_epochs):
+        pbar.update(1)
         gtwc.train()
         losses = []
         # Since bs >> 2^M, we will see sufficiently many examples of each.

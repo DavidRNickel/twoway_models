@@ -8,7 +8,7 @@ from tqdm import tqdm
 from params import params
 from twrnn_class import Twoway_coding
 from utils import *
-from test_model import test_RNN
+from test_model import test_model
 
 if __name__=='__main__':
 
@@ -20,12 +20,12 @@ if __name__=='__main__':
     ckpt = torch.load(parameter.loadfile)
     model.load_state_dict(ckpt['model_state_dict'])
 
-    save_results_to = parameter.save_results_to 
-    if not os.path.exists(save_results_to):
-        os.makedirs(save_results_to)
+    save_dir = parameter.save_dir 
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
 
     orig_stdout = sys.stdout
-    outfile = open(os.path.join(save_results_to, parameter.test_log_file), 'w')
+    outfile = open(os.path.join(save_dir, parameter.test_log_file), 'w')
     sys.stdout=outfile
 
     SNR1 = parameter.SNR1               # SNR at User1 in dB
@@ -110,7 +110,7 @@ if __name__=='__main__':
     pbar = tqdm(total=N_iter)
     for ii in range(N_iter):
         pbar.update(1)
-        ber1_tmp, ber2_tmp, bler1_tmp, bler2_tmp, power1_tmp, power2_tmp = test_RNN(model, parameter, N_small)
+        ber1_tmp, ber2_tmp, bler1_tmp, bler2_tmp, power1_tmp, power2_tmp = test_model(model, parameter, N_small)
         ber1_sum += ber1_tmp
         ber2_sum += ber2_tmp
         bler1_sum += bler1_tmp
@@ -141,11 +141,11 @@ if __name__=='__main__':
 
     ######## Save model
 
-    save_results_to = parameter.save_results_to
-    torch.save(model.state_dict(), os.path.join(save_results_to,'final_state_dict.pt'))
+    save_dir = parameter.save_dir
+    torch.save(model.state_dict(), os.path.join(save_dir,'final_state_dict.pt'))
 
     ####### Save normalization weights
-    torch.save(mean1_train, os.path.join(save_results_to,'mean1_train.pt'))
-    torch.save(std1_train, os.path.join(save_results_to,'std1_train.pt'))
-    torch.save(mean2_train, os.path.join(save_results_to,'mean2_train.pt'))
-    torch.save(std2_train, os.path.join(save_results_to,'std2_train.pt'))
+    torch.save(mean1_train, os.path.join(save_dir,'mean1_train.pt'))
+    torch.save(std1_train, os.path.join(save_dir,'std1_train.pt'))
+    torch.save(mean2_train, os.path.join(save_dir,'mean2_train.pt'))
+    torch.save(std2_train, os.path.join(save_dir,'std2_train.pt'))

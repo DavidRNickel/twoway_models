@@ -93,8 +93,8 @@ class Lightcode(nn.Module):
         # print(f'\nwp1: {self.wgt_pwr_1}, wpn1: {self.wgt_pwr_normed_1}')
 
         if noise_ff is None:
-            noise_ff = sqrt(self.noise_pwr_ff) * torch.randn((bitstreams_1.shape[0], self.T), requires_grad=False).to(self.device)
-            noise_fb = sqrt(self.noise_pwr_fb) * torch.randn((bitstreams_1.shape[0], self.T), requires_grad=False).to(self.device)
+            noise_ff = sqrt(self.noise_pwr_ff) * torch.randn((bitstreams_1.shape[0], self.T), requires_grad=False, device=self.device)
+            noise_fb = sqrt(self.noise_pwr_fb) * torch.randn((bitstreams_1.shape[0], self.T), requires_grad=False, device=self.device)
         
         # used to track the transmit power of each user
         self.xmit_pwr_track_1, self.xmit_pwr_track_2 = [], []
@@ -142,11 +142,11 @@ class Lightcode(nn.Module):
         bs = b.shape[0]
         # only need to check if it's active or passive (in some sense...)
         if fb_info is not None:
-            fbi = torch.hstack((fb_info-prev_x, torch.zeros(bs, self.T-1-t).to(self.device)))
-            px = torch.hstack((prev_x, torch.zeros(bs, self.T-1-t).to(self.device)))
+            fbi = torch.hstack((fb_info-prev_x, torch.zeros((bs, self.T-1-t), device=self.device)))
+            px = torch.hstack((prev_x, torch.zeros((bs, self.T-1-t), device=self.device)))
         else:
-            fbi = torch.zeros(bs, self.T-1).to(self.device)
-            px = torch.zeros(bs, self.T-1).to(self.device)
+            fbi = torch.zeros((bs, self.T-1), device=self.device)
+            px = torch.zeros((bs, self.T-1), device=self.device)
         
         return torch.hstack((b, px, fbi))
         
@@ -165,12 +165,12 @@ class Lightcode(nn.Module):
 
         if self.is_one_way_active: # x2 is bitstreams_2 in one_way_active case
             if t==0:
-                self.prev_xmit_signal_2 = torch.zeros(x1.shape[0],1).to(self.device)
+                self.prev_xmit_signal_2 = torch.zeros((x1.shape[0],1), device=self.device)
             if t<self.T-1:
                 know_vec = self.make_knowledge_vec(x2, t+1, fb_info = self.recvd_y_2, prev_x = self.prev_xmit_signal_2)
                 x2 = self.transmit_symbol(know_vec, self.enc_2, t, uid=2)
             else:
-                x2 = torch.zeros(x1.shape[0]).to(self.device)
+                x2 = torch.zeros(x1.shape[0], device=self.device)
 
         elif self.is_one_way_passive:
             x2 = self.transmit_symbol(y2, self.enc_2, t, uid=2)

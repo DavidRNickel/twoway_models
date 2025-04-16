@@ -15,26 +15,28 @@ from datetime import datetime
 
 from twrnn_class import Twoway_coding
 from utils import *
-from test_model import test_RNN
+from test_model import test_model
+from make_argparser import make_parser
 
 if __name__=='__main__':
     # model setup
-    parameter = params()
+    parser, _ = make_parser()
+    parameter = parser.parse_args(sys.argv[1:])
     use_cuda = parameter.use_cuda and torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda else "cpu")
     parameter.device = device
 
-    save_results_to = parameter.save_results_to 
-    if not os.path.exists(save_results_to):
-        os.makedirs(save_results_to)
+    save_dir = parameter.save_dir 
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
     
     orig_stdout = sys.stdout
-    outfile = open(os.path.join(save_results_to, parameter.train_log_file), 'w')
+    outfile = open(os.path.join(save_dir, parameter.train_log_file), 'w')
     sys.stdout=outfile
 
     if parameter.use_tensorboard:
         from torch.utils.tensorboard import SummaryWriter
-        writer = SummaryWriter(log_dir = os.path.join(save_results_to, f'tblog_{datetime.now().strftime("False%Y%m%d-%H%M%S")}'))
+        writer = SummaryWriter(log_dir = os.path.join(save_dir, f'tblog_{datetime.now().strftime("False%Y%m%d-%H%M%S")}'))
 
     # Generate training data
     SNR1 = parameter.SNR1               # SNR at User1 in dB
@@ -59,6 +61,7 @@ if __name__=='__main__':
 
     if use_cuda:
         model = Twoway_coding(parameter).to(device)
+        torch.backends.cudnn.benchmark = True
     else:
         model = Twoway_coding(parameter)
 
@@ -153,9 +156,9 @@ if __name__=='__main__':
                         'optimizer_state_dict' : optimizer.state_dict(),
                         'scheduler_state_dict' : scheduler.state_dict(),
                         'loss' : loss.item()},
-                        os.path.join(save_results_to, f'{nowtime}.pt'))
+                        os.path.join(save_dir, f'{nowtime}.pt'))
 
-        ber1_val, ber2_val, bler1_val, bler2_val, _, _ = test_RNN(model, parameter, N_validation)
+        ber1_val, ber2_val, bler1_val, bler2_val, _, _ = test_model(model, parameter, N_validation)
         # Summary of each epoch
         print('Summary: Epoch: {}, lr: {}, Average loss: {:.4f}, BLER: {:.4f}'.format(epoch, optimizer.param_groups[0]['lr'], loss_training/N_iter, bler1_val+bler2_val) )
         eprint('Summary: Epoch: {}, lr: {}, Average loss: {:.4f}, BLER: {:.4f}'.format(epoch, optimizer.param_groups[0]['lr'], loss_training/N_iter, bler1_val+bler2_val) )
@@ -191,7 +194,7 @@ if __name__=='__main__':
                 'optimizer_state_dict' : optimizer.state_dict(),
                 'scheduler_state_dict' : scheduler.state_dict(),
                 'loss' : loss.item()},
-                os.path.join(save_results_to, f'{nowtime}.pt'))
+                os.path.join(save_dir, f'{nowtime}.pt'))
 
     print(f'\nTotal runtime: {datetime.now()-total_run_starttime}')
     sys.stdout = orig_stdout

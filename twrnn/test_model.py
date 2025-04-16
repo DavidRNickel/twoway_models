@@ -16,7 +16,7 @@ from twrnn_class import Twoway_coding
 from utils import *
 
 # Test
-def test_RNN(model, parameter, N_test): 
+def test_model(model, parameter, N_test): 
     # Generate test data
     bit1_test     = torch.randint(0, 2, (N_test, parameter.N_bits, 1)) 
     bit2_test     = torch.randint(0, 2, (N_test, parameter.N_bits, 1)) 

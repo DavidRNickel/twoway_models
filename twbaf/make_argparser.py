@@ -22,7 +22,7 @@ def make_parser():
     parser.add_argument('--snr-ff', type=float, default=1, help='SNR1')
     parser.add_argument('--snr-fb', type=float, default=20, help='SNR2')
 
-    parser.add_argument('--device', type=str, default='cuda:0' if torch.cuda.is_available() else 'cpu', nargs='?', help='set \'cuda\' if available else \'cpu\'')
+    parser.add_argument('--device', type=str, default='cuda' if torch.cuda.is_available() else 'cpu', nargs='?', help='set \'cuda\' if available else \'cpu\'')
 
     parser.add_argument('--optim-lr', type=float, default=.001, help='optimizer learning rate')
     parser.add_argument('--optim-weight-decay', type=float, default=.01, help='decay for AdamW optimizer')
