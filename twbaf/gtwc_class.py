@@ -65,12 +65,12 @@ class GTWC(nn.Module):
         # Power weighting-related parameters.
         self.wgt_pwr_1 = torch.nn.Parameter(torch.Tensor(self.T), requires_grad=True)
         self.wgt_pwr_1.data.uniform_(1., 1.)
-        self.wgt_pwr_normed_1 = torch.sqrt(self.wgt_pwr_1**2 * (self.T)/torch.sum(self.wgt_pwr_1**2))
+        self.wgt_pwr_normed_1 = torch.sqrt(self.wgt_pwr_1**2 * (self.T)/torch.sum(self.wgt_pwr_1**2) + 1e-8)
         self.xmit_pwr_track_1 = []
 
         self.wgt_pwr_2 = torch.nn.Parameter(torch.Tensor(self.T), requires_grad=True)
         self.wgt_pwr_2.data.uniform_(1., 1.)
-        self.wgt_pwr_normed_2 = torch.sqrt(self.wgt_pwr_2**2 * (self.T)/torch.sum(self.wgt_pwr_2**2))
+        self.wgt_pwr_normed_2 = torch.sqrt(self.wgt_pwr_2**2 * (self.T)/torch.sum(self.wgt_pwr_2**2) + 1e-8)
         self.xmit_pwr_track_2 = []
 
         # Parameters for normalizing mean and variance of transmit signals.
@@ -156,10 +156,6 @@ class GTWC(nn.Module):
             px_2 = torch.cat((px_2, torch.zeros((self.batch_size, self.num_blocks, tt), device=self.device)), axis=2)
             fbi_1 = torch.cat((fbi_1, torch.zeros((self.batch_size, self.num_blocks, tt), device=self.device)), axis=2)
             fbi_2 = torch.cat((fbi_2, torch.zeros((self.batch_size, self.num_blocks, tt), device=self.device)), axis=2)
-            # px_1 = F.pad(px_1, pad=(0,self.T-1-px_1.shape[-1]), value=0)
-            # px_2 = F.pad(px_2, pad=(0,self.T-1-px_2.shape[-1]), value=0)
-            # fbi_1 = F.pad(fbi_1, pad=(0,self.T-1-fbi_1.shape[-1]), value=0)
-            # fbi_2 = F.pad(fbi_2, pad=(0,self.T-1-fbi_2.shape[-1]), value=0)
             if self.use_beliefs == False:
                 q_1 = torch.cat((px_1, fbi_1),axis=2)
                 q_2 = torch.cat((px_2, fbi_2),axis=2)
@@ -300,30 +296,31 @@ class GTWC(nn.Module):
     #
     # Normalize the batch.
     def normalization(self, inputs, t_idx, uid):
+        e = 1e-8
         if uid==1:
             mean_batch_1 = torch.mean(inputs)
             std_batch_1 = torch.std(inputs)
             if self.training == True:
-                outputs = (inputs - mean_batch_1) / std_batch_1
+                outputs = (inputs - mean_batch_1) / (std_batch_1+e)
             else:
                 if self.normalization_with_saved_data:
-                    outputs = (inputs - self.mean_saved_1[t_idx]) / self.std_saved_1[t_idx]
+                    outputs = (inputs - self.mean_saved_1[t_idx]) / (self.std_saved_1[t_idx]+e)
                 else:
                     self.mean_batch_1[t_idx] = mean_batch_1
                     self.std_batch_1[t_idx] = std_batch_1
-                    outputs = (inputs - mean_batch_1) / std_batch_1
+                    outputs = (inputs - mean_batch_1) / (std_batch_1+e)
 
         else:
             mean_batch_2 = torch.mean(inputs)
             std_batch_2 = torch.std(inputs)
             if self.training == True:
-                outputs = (inputs - mean_batch_2) / std_batch_2
+                outputs = (inputs - mean_batch_2) / (std_batch_2+e)
             else:
                 if self.normalization_with_saved_data:
-                    outputs = (inputs - self.mean_saved_2[t_idx]) / self.std_saved_2[t_idx]
+                    outputs = (inputs - self.mean_saved_2[t_idx]) / (self.std_saved_2[t_idx]+e)
                 else:
                     self.mean_batch_2[t_idx] = mean_batch_2
                     self.std_batch_2[t_idx] = std_batch_2
-                    outputs = (inputs - mean_batch_2) / std_batch_2
+                    outputs = (inputs - mean_batch_2) / (std_batch_2+e)
 
         return outputs
