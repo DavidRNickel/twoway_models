@@ -3,7 +3,7 @@ from torch import nn
 import torch.nn.functional as F
 from torch.nn.modules.transformer import TransformerEncoder, TransformerEncoderLayer
 
-from pos_enc_test import PositionalEncoding
+from pos_enc import PositionalEncoding
 
 def general_attention_network(dim_in, dim_out, dim_embed, d_model, activation, max_len, num_layers,
                               scaling_factor=4, n_heads=1, dropout=0, embed=None):
