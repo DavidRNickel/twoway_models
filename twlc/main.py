@@ -73,7 +73,7 @@ if __name__=='__main__':
     sys.stdout=outfile
 
     # Print out system information
-    # print(f'Running on: {torch.cuda.get_device_name()}\n')
+    print(f'Running on: {torch.cuda.get_device_name()}\n')
 
     # Make parameters that have to be calculated using other parameters
     conf.knowledge_vec_len = conf.M + 2*(conf.T-1)
@@ -220,7 +220,7 @@ if __name__=='__main__':
                 'optimizer_state_dict' : optimizer.state_dict(),
                 'scheduler_state_dict' : scheduler.state_dict(),
                 'loss' : loss.item()},
-                os.path.join(conf.save_dir, f'{nowtime}.pt'))
+                os.path.join(conf.save_dir, f'final.pt'))
     
     print(f'\nTotal runtime: {datetime.now()-total_run_starttime}')
 
