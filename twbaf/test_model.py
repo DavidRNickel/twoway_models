@@ -18,7 +18,7 @@ def test_model(model, conf, show_progress_interval=None):
             bits_2 = torch.randint(0, 2, (conf.test_batch_size, conf.K), device=conf.device)
             b1 = bits_1.view(conf.test_batch_size, -1, conf.M)
             b2 = bits_2.view(conf.test_batch_size, -1, conf.M)
-            output_1, output_2 = model(b1, b2)
+            output_1, output_2 = model(2*b1-1, 2*b2-1)
             output_1 = output_1.view(-1, 2**model.M)
             output_2 = output_2.view(-1, 2**model.M)
             bit_estimates_1 = model.one_hot_to_bits(output_1).bool().view(-1, conf.K).detach().clone().cpu().numpy().astype(np.bool_)

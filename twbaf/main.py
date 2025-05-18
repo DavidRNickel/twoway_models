@@ -24,7 +24,22 @@ if __name__=='__main__':
     conf = parser.parse_args(sys.argv[1:])
     device = conf.device
 
-    os.makedirs(conf.save_dir, exist_ok=True)
+    #
+    # Make necessary directories and files for logging.
+    # Doing this to avoid overwriting the existing training logs. 
+    os.makedirs(conf.save_dir, exist_ok=True) 
+    filenames = os.listdir(conf.save_dir)
+    p = re.compile(f'^{conf.log_file}*')
+    logfiles = sorted([s for s in filenames if p.match(s)])
+    if len(logfiles) == 0:
+        conf.log_file = conf.log_file + '.txt'
+    elif len(logfiles) == 1:
+        conf.log_file = conf.log_file.split('.')[0] + '_1.txt'
+    else:
+        lf = logfiles[-1].split('_')
+        lf_name, lf_ext = '_'.join(lf[:-1]), lf[-1]# split apart the 
+        n = int(lf_ext.split('.')[0])
+        conf.log_file = lf_name + f'_{int(n+1)}.txt'
     orig_stdout = sys.stdout
     outfile = open(os.path.join(conf.save_dir, conf.log_file),'w')
     sys.stdout=outfile
@@ -95,7 +110,7 @@ if __name__=='__main__':
         b_target_2 = b2.view(-1, conf.M).float() @ map_vec
         for i in range(conf.num_iters_per_epoch):
             optimizer.zero_grad()
-            output_1, output_2 = gtwc(b1, b2)
+            output_1, output_2 = gtwc(2*b1-1, 2*b2-1)
             output_1 = output_1.view(bs*gtwc.num_blocks, 2**gtwc.M)
             output_2 = output_2.view(bs*gtwc.num_blocks, 2**gtwc.M)
             # loss = loss_fn(output_1, b_one_hot_1) + loss_fn(output_2, b_one_hot_2)
@@ -164,13 +179,13 @@ if __name__=='__main__':
                 'optimizer_state_dict' : optimizer.state_dict(),
                 'scheduler_state_dict' : scheduler.state_dict(),
                 'loss' : L},
-                os.path.join(conf.save_dir, f'{nowtime}.pt'))
+                os.path.join(conf.save_dir, 'final.pt'))
 
     print(f'ber: {np.array(bit_errors)}')
     print(f'bler: {np.array(block_errors)}')
     b = {'ber' : np.array(bit_errors), 'bler' : np.array(block_errors)}
-    with open(os.path.join(conf.save_dir, 'test_results.pkl'), 'wb') as f:
-        pkl.dump(b,f)
+    # with open(os.path.join(conf.save_dir, 'test_results.pkl'), 'wb') as f:
+    #     pkl.dump(b,f)
 
     sys.stdout = orig_stdout
     outfile.close()

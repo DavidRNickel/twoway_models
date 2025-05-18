@@ -13,8 +13,22 @@ if __name__=='__main__':
     conf = parser.parse_args(sys.argv[1:])
     device = conf.device
 
-    # Make necessary directories and files for logging
+    #
+    # Make necessary directories and files for logging.
+    # Doing this to avoid overwriting the existing training logs. 
     os.makedirs(conf.save_dir, exist_ok=True) 
+    filenames = os.listdir(conf.save_dir)
+    p = re.compile(f'^{conf.log_file}*')
+    logfiles = sorted([s for s in filenames if p.match(s)])
+    if len(logfiles) == 0:
+        conf.log_file = conf.log_file + '.txt'
+    elif len(logfiles) == 1:
+        conf.log_file = conf.log_file.split('.')[0] + '_1.txt'
+    else:
+        lf = logfiles[-1].split('_')
+        lf_name, lf_ext = '_'.join(lf[:-1]), lf[-1]# split apart the 
+        n = int(lf_ext.split('.')[0])
+        conf.log_file = lf_name + f'_{int(n+1)}.txt'
     orig_stdout = sys.stdout
     outfile = open(os.path.join(conf.save_dir, conf.log_file), 'w')
     sys.stdout=outfile

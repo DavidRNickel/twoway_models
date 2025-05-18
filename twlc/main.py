@@ -220,7 +220,7 @@ if __name__=='__main__':
                 'optimizer_state_dict' : optimizer.state_dict(),
                 'scheduler_state_dict' : scheduler.state_dict(),
                 'loss' : loss.item()},
-                os.path.join(conf.save_dir, f'final.pt'))
+                os.path.join(conf.save_dir, 'final.pt'))
     
     print(f'\nTotal runtime: {datetime.now()-total_run_starttime}')
 
