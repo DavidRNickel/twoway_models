@@ -1,4 +1,4 @@
-*.pt
+2*.pt
 __pycache__
 *.txt
 tmp/
