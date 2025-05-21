@@ -23,7 +23,7 @@ if __name__=='__main__':
     parser, _ = make_parser()
     parameter = parser.parse_args(sys.argv[1:])
     use_cuda = parameter.use_cuda and torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda else "cpu")
+    device = torch.device("cuda" if use_cuda else "cpu")
     parameter.device = device
 
     save_dir = parameter.save_dir 
@@ -194,7 +194,7 @@ if __name__=='__main__':
                 'optimizer_state_dict' : optimizer.state_dict(),
                 'scheduler_state_dict' : scheduler.state_dict(),
                 'loss' : loss.item()},
-                os.path.join(save_dir, f'{nowtime}.pt'))
+                os.path.join(save_dir, 'final.pt'))
 
     print(f'\nTotal runtime: {datetime.now()-total_run_starttime}')
     sys.stdout = orig_stdout
