@@ -14,7 +14,7 @@ def calc_mean_and_std(model, conf):
             bits_2 = torch.randint(0, 2, (conf.test_batch_size, conf.K), device=conf.device)
             b1 = bits_1.view(conf.test_batch_size, -1, conf.M)
             b2 = bits_2.view(conf.test_batch_size, -1, conf.M)
-            _, _= model(2*b1-1, 2*b2-1)
+            _, _= model(b1, b2)
             
             mean_tot_1 += model.mean_batch_1
             mean_tot_2 += model.mean_batch_2

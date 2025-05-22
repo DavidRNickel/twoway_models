@@ -152,8 +152,8 @@ class GTWC(nn.Module):
             fbi_1, fbi_2 = fb_info
             px_1, px_2 = prev_x
             tt = self.T-1-px_1.shape[-1]
-            fbi_1 -= px_1
-            fbi_2 -= px_2
+            # fbi_1 -= px_1
+            # fbi_2 -= px_2
             px_1 = torch.cat((px_1, torch.zeros((self.batch_size, self.num_blocks, tt), device=self.device)), axis=2)
             px_2 = torch.cat((px_2, torch.zeros((self.batch_size, self.num_blocks, tt), device=self.device)), axis=2)
             fbi_1 = torch.cat((fbi_1, torch.zeros((self.batch_size, self.num_blocks, tt), device=self.device)), axis=2)

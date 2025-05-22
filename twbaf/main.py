@@ -109,7 +109,7 @@ if __name__=='__main__':
         b_target_2 = b2.view(-1, conf.M).float() @ map_vec
         for i in range(conf.num_iters_per_epoch):
             optimizer.zero_grad()
-            output_1, output_2 = gtwc(2*b1-1, 2*b2-1)
+            output_1, output_2 = gtwc(b1, b2)
             output_1 = output_1.view(bs*gtwc.num_blocks, 2**gtwc.M)
             output_2 = output_2.view(bs*gtwc.num_blocks, 2**gtwc.M)
             # loss = loss_fn(output_1, b_one_hot_1) + loss_fn(output_2, b_one_hot_2)

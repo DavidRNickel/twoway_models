@@ -71,11 +71,6 @@ if __name__=='__main__':
     print(f'BLER: {blers}')
     print(f'Powers: {pwrs}')
     print(f'Sum Powers: {pwrs[0].sum()}, {pwrs[1].sum()}')
-    # b = {'ber' : bers,
-    #      'bler' : blers}
-    # test_no = int(1)
-    # with open(os.path.join(conf.save_dir, f'bler_{test_no}.pkl'), 'wb') as f:
-    #     pkl.dump(b,f)
 
     sys.stdout = orig_stdout
     outfile.close()
