@@ -39,6 +39,6 @@ def make_parser():
     parser.add_argument('--num-valid-epochs', type=int, default=1000, help='number of epochs to find mean/std in calc_saved_mean_std')
     parser.add_argument( '--batch-size', type=int, default=int(1E5))  
     parser.add_argument('--grad-clip', type=float, default=.5)
-    parser.add_argument('--d-model', type=int, default=16)
+    parser.add_argument('--d-model', type=int, default=32)
 
     return parser, t
