@@ -152,8 +152,6 @@ class GTWC(nn.Module):
             fbi_1, fbi_2 = fb_info
             px_1, px_2 = prev_x
             tt = self.T-1-px_1.shape[-1]
-            # fbi_1 -= px_1
-            # fbi_2 -= px_2
             px_1 = torch.cat((px_1, torch.zeros((self.batch_size, self.num_blocks, tt), device=self.device)), axis=2)
             px_2 = torch.cat((px_2, torch.zeros((self.batch_size, self.num_blocks, tt), device=self.device)), axis=2)
             fbi_1 = torch.cat((fbi_1, torch.zeros((self.batch_size, self.num_blocks, tt), device=self.device)), axis=2)
@@ -188,14 +186,12 @@ class GTWC(nn.Module):
         x1 = self.pos_enc_enc_1(x1)
         x1 = self.enc_1(x1)
         x1 = self.enc_raw_out_1(x1).squeeze(-1)
-        # x1 = self.tanh(x1)
         x1 = self.tanh(x1 - x1.mean())
 
         x2 = self.emb_enc_2(k2)
         x2 = self.pos_enc_enc_2(x2)
         x2 = self.enc_2(x2)
         x2 = self.enc_raw_out_2(x2).squeeze(-1)
-        # x2 = self.tanh(x2)
         x2 = self.tanh(x2 - x2.mean())
 
         return self.normalize_transmit_signal_power(x1, x2, t)
