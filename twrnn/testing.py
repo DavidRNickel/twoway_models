@@ -147,6 +147,7 @@ if __name__=='__main__':
     print('Ber2:  ', float(ber2_inference))
     print('Bler1: ', float(bler1_inference))
     print('Bler2: ', float(bler2_inference))
+    print('Bler total: ', float(bler1_inference) + float(bler2_inference))
     print('Power1: ', round(np.sum(power1_sum)/(conf.batch_size*N_iter),3))
     print('Power2: ', round(np.sum(power2_sum)/(conf.batch_size*N_iter),3))
 
