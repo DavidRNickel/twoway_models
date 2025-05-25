@@ -9,29 +9,28 @@ if __name__=='__main__':
     plt.rcParams['ytick.labelsize'] = 12
     plt.rcParams['axes.labelsize'] = 20
     plt.rcParams['axes.titlesize'] = 20
-    plt.rcParams['legend.fontsize'] = 12
+    plt.rcParams['legend.fontsize'] = 10
     #
     # ONEWAY vs TWOWAY
-    ow_v_twoway_snr = [0,1,2.5,4,5]
-    # TODO: change values for SNR=4
-    ow_k4m4t8 = [2.25e-1, 1.2e-1, 1.48e-2, 2.8e-4, 2.3e-5]
-    tw_k4m2t8 = [1.1e-1, 5.2e-2, 1.18e-2, 1.48e-3, 2.4e-4]
+    # ow_v_twoway_snr = [0,1,2.5,4,5]
+    # ow_k4m4t8 = [2.25e-1, 1.2e-1, 1.48e-2, 2.8e-4, 2.3e-5]
+    # tw_k4m2t8 = [1.1e-1, 5.2e-2, 1.18e-2, 1.48e-3, 2.4e-4]
 
-    ow_k6m6t9 = [7.18e-1, 5.0e-1, 2.0e-1, 2.2e-2, 4.6e-3]
-    tw_k6m3t9 = [2.3e-1, 1.18e-1, 3e-2, 4.2e-3, 7.4e-4]
+    # ow_k6m6t9 = [7.18e-1, 5.0e-1, 2.0e-1, 2.2e-2, 4.6e-3]
+    # tw_k6m3t9 = [2.3e-1, 1.18e-1, 3e-2, 4.2e-3, 7.4e-4]
 
-    plt.figure(0)
-    plt.semilogy(ow_v_twoway_snr, ow_k4m4t8, label='OW Active (R=1/2)', color='blue', ls='-.', marker='o', markersize=8)
-    plt.semilogy(ow_v_twoway_snr, tw_k4m2t8, label='TW (R=1/4)', color='orange', ls='-.', marker='o', markersize=8)
-    plt.semilogy(ow_v_twoway_snr, ow_k6m6t9, label='OW Active (R=2/3)', color='blue', marker='^', markersize=10)
-    plt.semilogy(ow_v_twoway_snr, tw_k6m3t9, label='TW (R=1/3)', color='orange', marker='^', markersize=10)
-    plt.xlabel('SNR [dB] (Both Directions)')
-    plt.ylabel('BLER')
-    # plt.title('One-way vs. Two-Way Transmission')
-    plt.grid(which='both')
-    # plt.ylim(1e-5, 1)
-    plt.legend()
-    plt.show()
+    # plt.figure(0)
+    # plt.semilogy(ow_v_twoway_snr, ow_k4m4t8, label='OW Active (R=1/2)', color='blue', ls='-.', marker='o', markersize=8)
+    # plt.semilogy(ow_v_twoway_snr, tw_k4m2t8, label='TW (R=1/4)', color='orange', ls='-.', marker='o', markersize=8)
+    # plt.semilogy(ow_v_twoway_snr, ow_k6m6t9, label='OW Active (R=2/3)', color='blue', marker='^', markersize=10)
+    # plt.semilogy(ow_v_twoway_snr, tw_k6m3t9, label='TW (R=1/3)', color='orange', marker='^', markersize=10)
+    # plt.xlabel('SNR [dB] (Both Directions)')
+    # plt.ylabel('BLER')
+    # # plt.title('One-way vs. Two-Way Transmission')
+    # plt.grid(which='both')
+    # # plt.ylim(1e-5, 1)
+    # plt.legend()
+    # plt.show()
 
     #
     # TWOWAY MODEL COMPARISON 
@@ -45,7 +44,7 @@ if __name__=='__main__':
     twlc_k6m2t6_snr1_n1 = [3.4e-1, 1.67e-1, 7.2e-2, 4.5e-2, 3.29e-2, 3.27e-2]
 
     twlc_k4m2t5_snr1_1 = [2.01e-1, 5.95e-2, 2.34e-2, 9.08e-3, 4.91e-3, 2.53e-3]
-    twlc_k4m2t5_snr1_n1 = [3.30e-1, 1.96e-1, 1.33e-1, 1.11e-1, 1.-4e-1, 9.89e-2]
+    twlc_k4m2t5_snr1_n1 = [3.30e-1, 1.96e-1, 1.33e-1, 1.11e-1, 1.04e-1, 9.89e-2]
     
     # TWBAF
     twbaf_k6m2t6_snr1_1 = [1.89e-1, 1.97e-2, 1.89e-3, 1.28e-4, 4.04e-7, 9.60e-8]
@@ -54,7 +53,7 @@ if __name__=='__main__':
     twbaf_k6m3t9_snr1_1 = [8.34e-2, 2.43e-2, 1.31e-4, 1.25e-5, 6.57e-6, 1.19e-7]
     twbaf_k6m3t9_snr1_n1 = [2.52e-1, 1.12e-1, 3.75e-2, 2.28e-2, 1.74e-2, 3.09e-3]
 
-    twbaf_k4m2t5_snr1_1 = [1.61e-1, 5.27e-2, 1.49-2, 7.09e-3, 3.87e-3, 2.56e-3]
+    twbaf_k4m2t5_snr1_1 = [1.61e-1, 5.27e-2, 1.49e-2, 7.09e-3, 3.87e-3, 2.56e-3]
     twbaf_k4m2t5_snr1_n1 = [2.90e-1, 1.89e-1, 1.30e-1, 1.14e-1, 2.07e-1, 9.25e-2]
 
     # TWRNN
@@ -77,6 +76,16 @@ if __name__=='__main__':
 
     twrnn_k4m2t5_snr1_1 = [1.01e-1, 5.19e-2, 8.62e-3, 2.71e-3, 2.22e-3, 5.34e-3]
     twrnn_k4m2t5_snr1_n1 = [1.65e-1, 1.08e-1, 6.20e-2, 6.31e-2, 4.80e-2, 4.70e-2]
+
+    # linear two-way (Allerton) B=3
+    bler1_linear = [6.38E-01,5.26E-01,3.64E-01,1.06E-01,1.01E-02, 3.66E-09]
+    bler2_linear = [6.58E-01,5.49E-01,2.17E-01,2.93E-02,4.31E-05, 6.2E-11]
+    twlin_b3_snr1_1 = np.array(bler1_linear) + np.array(bler2_linear)
+
+    # linear two-way (Allerton) B=3
+    bler1_linear = [7.30E-01,7.05E-01,5.20E-01,2.67E-01,7.42E-02,8.31E-03]
+    bler2_linear = [6.62E-01,4.17E-01,1.67E-01,2.38E-02,2.86E-04,2.13E-07]
+    twlin_b3_snr1_n1 = np.array(bler1_linear) + np.array(bler2_linear)
 
     # SNR1=1
     # plt.figure(1)
@@ -139,6 +148,7 @@ if __name__=='__main__':
     ax1.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_1, label='TWBAF: K6, M2', color='black', ls='-.', marker='^', markersize=10)
     ax1.semilogy(tw_comparison_snr2, rnn_m3_snr1_1, label='TWRNN: K6, M3', color='orange', marker='o', markersize=8)
     ax1.semilogy(tw_comparison_snr2, rnn_m6_snr1_1, label='TWRNN: K6, M6', color='orange', ls='-.', marker='^', markersize=10)
+    ax1.semilogy(tw_comparison_snr2, twlin_b3_snr1_1, label='TWLIN: B3', color='green', marker='o', markersize=8)
     ax1.set_xlabel(r'SNR$_2$ [dB]'+'\n' +r'(a) BLER comparison for SNR$_1$=1.', fontsize=12, loc='center')
 
     ax2.semilogy(tw_comparison_snr2, twlc_k6m3t9_snr1_n1, label='TWLC: K6, M3', color='blue', marker='o', markersize=8)
@@ -147,6 +157,7 @@ if __name__=='__main__':
     ax2.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_n1, label='TWBAF: K6, M2', color='black', ls='-.', marker='^', markersize=10)
     ax2.semilogy(tw_comparison_snr2, rnn_m6_snr1_n1, label='TWRNN: K6, M3', color='orange', marker='o', markersize=8)
     ax2.semilogy(tw_comparison_snr2, rnn_m3_snr1_n1, label='TWRNN: K6, M6', color='orange',ls='-.', marker='^', markersize=10)
+    ax2.semilogy(tw_comparison_snr2, twlin_b3_snr1_n1, label='TWLIN: B3', color='green', marker='o', markersize=8)
     ax2.set_xlabel(r'SNR$_2$ [dB]'+'\n' +r'(b) BLER comparison for SNR$_1$=-1.', fontsize=12, loc='center')
 
     ax3.semilogy(tw_comparison_snr2, twlc_k4m2t5_snr1_1, label='TWLC: K4, M2', color='blue', marker='o', markersize=8)
@@ -179,5 +190,11 @@ if __name__=='__main__':
     plt.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_1, label='TWBAF (Orig)', color='black',ls='-.', marker='^', markersize=10)
     plt.semilogy(tw_comparison_snr2, twrnn_fix_snr1_1_snr2_15, label='TWRNN (Fixed)', color='orange', marker='o', markersize=8)
     plt.semilogy(tw_comparison_snr2, rnn_m3_snr1_1, label='TWRNN (Orig)', color='orange',ls='-.', marker='^', markersize=10)
+    plt.semilogy(tw_comparison_snr2, twlin_b3_snr1_1, label='TWLIN', color='green', marker='o', markersize=8)
     plt.xlabel(r'SNR$_2$ [dB]'+'\n' +r'(c) Noise sensitivity analysis.', fontsize=12, loc='center')
+    plt.ylabel('BLER')
+    plt.title('Sensitivity Analysis')
+    plt.grid()
+    plt.legend()
+    
     plt.show()
