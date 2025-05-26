@@ -11,9 +11,8 @@ def make_parser():
     parser.add_argument('--use-cuda', type=lambda x: bool(strtobool(x)), default=True, nargs='?', const=True)
     parser.add_argument('--save-freq', type=int, default=10, help='frequency (in terms of epochs) at which the model is saved throughout training')
     parser.add_argument('--loadfile', type=str, default=None, nargs='?', help='file containing saved torch model for restarting training or running tests')
-    parser.add_argument('--save-dir', type=str, default='tmp', nargs='?', help='directory to which everything is saved')
-    parser.add_argument('--train-log-file', type=str, default='tmptrain', nargs='?', help='file to which train logs are written')
-    parser.add_argument('--test-log-file', type=str, default='tmptest', nargs='?', help='file to which test logs are written')
+    parser.add_argument('--save-dir', type=str, default='tmp', nargs='?', help='directory to which everything is saved', required=True)
+    parser.add_argument('--log-file', type=str, default=None, nargs='?', help='file to which logs are written', required=True)
     parser.add_argument('--show-progress-interval', type=int, default=None, nargs='?', help='use this if you want to print out during testing')
 
     # Encoder
