@@ -36,7 +36,7 @@ if __name__=='__main__':
         n = int(lf_ext.split('.')[0])
         parameter.log_file = lf_name + f'_{int(n+1)}.txt'
     orig_stdout = sys.stdout
-    outfile = open(os.path.join(parameter.save_dir, parameter.test_log_file), 'w')
+    outfile = open(os.path.join(parameter.save_dir, parameter.log_file), 'w')
     sys.stdout=outfile
 
     SNR1 = parameter.SNR1               # SNR at User1 in dB

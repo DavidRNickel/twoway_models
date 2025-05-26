@@ -54,7 +54,7 @@ if __name__=='__main__':
     twbaf_k6m3t9_snr1_n1 = [2.52e-1, 1.12e-1, 3.75e-2, 2.28e-2, 1.74e-2, 3.09e-3]
 
     twbaf_k4m2t5_snr1_1 = [1.61e-1, 5.27e-2, 1.49e-2, 7.09e-3, 3.87e-3, 2.56e-3]
-    twbaf_k4m2t5_snr1_n1 = [2.90e-1, 1.89e-1, 1.30e-1, 1.14e-1, 2.07e-1, 9.25e-2]
+    twbaf_k4m2t5_snr1_n1 = [2.90e-1, 1.89e-1, 1.30e-1, 1.14e-1, 9.45e-1, 9.25e-2]
 
     # TWRNN
     # Results provided by J. Kim et al.
@@ -74,7 +74,7 @@ if __name__=='__main__':
     bler2_proposed = [6.82E-02,8.44E-03,2.46E-03,7.16E-04,7.50E-05,2.32E-06]
     rnn_m3_snr1_n1 = np.array(bler1_proposed)+ np.array(bler2_proposed)
 
-    twrnn_k4m2t5_snr1_1 = [1.01e-1, 5.19e-2, 8.62e-3, 2.71e-3, 2.22e-3, 5.34e-3]
+    twrnn_k4m2t5_snr1_1 = [1.01e-1, 5.19e-2, 8.62e-3, 2.71e-3, 2.22e-3, 7.15e-4]
     twrnn_k4m2t5_snr1_n1 = [1.65e-1, 1.08e-1, 6.20e-2, 6.31e-2, 4.80e-2, 4.70e-2]
 
     # linear two-way (Allerton) B=3
