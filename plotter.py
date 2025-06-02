@@ -90,7 +90,7 @@ if __name__=='__main__':
     # this naming convention is analogous to the one used above but adapted to 
     # the inputs of the linear scheme
     twlin_l4k2t16_snr1_1 = [7.14e-1, 4.52e-1, 1.78e-1, 5.94e-2, 3.32e-2, 2.56e-2]
-    twlin_l4k2t16_snr1_n1 = [8.40e-1, 5.78e-1, 3.22e-1, 1.93e-1, 1.85e-1]
+    twlin_l4k2t16_snr1_n1 = [8.40e-1, 5.78e-1, 3.22e-1, 2.19e-1, 1.93e-1, 1.85e-1]
 
     # SNR1=1
     # plt.figure(1)
@@ -153,7 +153,7 @@ if __name__=='__main__':
     ax1.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_1, label='BAF M2', color='black', ls='-.', marker='^', markersize=10)
     ax1.semilogy(tw_comparison_snr2, rnn_m3_snr1_1, label='RNN M3', color='orange', marker='o', markersize=8)
     ax1.semilogy(tw_comparison_snr2, rnn_m6_snr1_1, label='RNN M6', color='orange', ls='-.', marker='^', markersize=10)
-    ax1.semilogy(tw_comparison_snr2, twlin_b3_snr1_1, label='LIN B3', color='green', marker='o', markersize=8)
+    ax1.semilogy(tw_comparison_snr2, twlin_b3_snr1_1, label='LIN M3', color='green', marker='o', markersize=8)
     # ax1.set_xlabel(r'SNR$_2$ [dB]'+'\n' +r'(a) BLER comparison for SNR$_1$=1.', fontsize=12, loc='center')
     ax1.set_xlabel(r'(a) SNR$_1$=1, K=6, T=18.', fontsize=12, loc='center')
 
@@ -163,19 +163,21 @@ if __name__=='__main__':
     ax3.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_n1, label='BAF M2', color='black', ls='-.', marker='^', markersize=10)
     ax3.semilogy(tw_comparison_snr2, rnn_m6_snr1_n1, label='RNN M3', color='orange', marker='o', markersize=8)
     ax3.semilogy(tw_comparison_snr2, rnn_m3_snr1_n1, label='RNN M6', color='orange',ls='-.', marker='^', markersize=10)
-    ax3.semilogy(tw_comparison_snr2, twlin_b3_snr1_n1, label='LIN B3', color='green', marker='o', markersize=8)
+    ax3.semilogy(tw_comparison_snr2, twlin_b3_snr1_n1, label='LIN M3', color='green', marker='o', markersize=8)
     # ax3.set_xlabel(r'SNR$_2$ [dB]'+'\n' +r'(b) BLER comparison for SNR$_1$=-1.', fontsize=12, loc='center')
     ax3.set_xlabel(r'(b) SNR$_1$=-1, K=6, T=18.', fontsize=12, loc='center')
 
     ax2.semilogy(tw_comparison_snr2, twlc_k4m2t5_snr1_1, label='LC M2', color='blue', marker='o', markersize=8)
     ax2.semilogy(tw_comparison_snr2, twbaf_k4m2t5_snr1_1, label='BAF M2', color='black', marker='o', markersize=8)
     ax2.semilogy(tw_comparison_snr2, twrnn_k4m2t5_snr1_1, label='RNN M2', color='orange', marker='o', markersize=8)
+    ax2.semilogy(tw_comparison_snr2, twlin_l4k2t16_snr1_1, label='LIN M2', color='green', marker='o', markersize=8)
     # ax2.set_xlabel(r'SNR$_2$ [dB]'+'\n' +r'(b) BLER for SNR$_1$=1.', fontsize=12, loc='center')
     ax2.set_xlabel(r'(c) SNR$_1$=1, K=4, T=10.', fontsize=12, loc='center')
 
     ax4.semilogy(tw_comparison_snr2, twlc_k4m2t5_snr1_n1, label='LC M2', color='blue', marker='o', markersize=8)
     ax4.semilogy(tw_comparison_snr2, twbaf_k4m2t5_snr1_n1, label='BAF M2', color='black', marker='o', markersize=8)
     ax4.semilogy(tw_comparison_snr2, twrnn_k4m2t5_snr1_n1, label='RNN M2', color='orange', marker='o', markersize=8)
+    ax4.semilogy(tw_comparison_snr2, twlin_l4k2t16_snr1_n1, label='LIN M2', color='green', marker='o', markersize=8)
     # ax4.set_xlabel(r'SNR$_2$ [dB]'+'\n' +r'(d) BLER comparison for SNR$_1$=-1.', fontsize=12, loc='center')
     ax4.set_xlabel(r'(d) SNR$_1$=-1, K=4, T=10.', fontsize=12, loc='center')
 
