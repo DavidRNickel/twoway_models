@@ -87,6 +87,11 @@ if __name__=='__main__':
     bler2_linear = [6.62E-01,4.17E-01,1.67E-01,2.38E-02,2.86E-04,2.13E-07]
     twlin_b3_snr1_n1 = np.array(bler1_linear) + np.array(bler2_linear)
 
+    # this naming convention is analogous to the one used above but adapted to 
+    # the inputs of the linear scheme
+    twlin_l6k3t18_snr1_1 = [7.14e-1, 4.52e-1, 1.78e-1, 5.94e-2, 3.32e-2, 2.56e-2]
+    twlin_l6k3t18_snr1_n1 = [8.40e-1, 5.78e-1, 3.22e-1, 1.93e-1, 1.85e-1]
+
     # SNR1=1
     # plt.figure(1)
     # plt.semilogy(tw_comparison_snr2, twlc_k6m3t9_snr1_1, label='TWLC: K6, M3', color='blue', marker='o', markersize=8)
