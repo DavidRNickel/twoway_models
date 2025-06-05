@@ -12,25 +12,35 @@ if __name__=='__main__':
     plt.rcParams['legend.fontsize'] = 10
     #
     # ONEWAY vs TWOWAY
-    # ow_v_twoway_snr = [0,1,2.5,4,5]
-    # ow_k4m4t8 = [2.25e-1, 1.2e-1, 1.48e-2, 2.8e-4, 2.3e-5]
-    # tw_k4m2t8 = [1.1e-1, 5.2e-2, 1.18e-2, 1.48e-3, 2.4e-4]
+    ow_v_twoway_snr = [0,1,2.5,4,5]
+    ow_k4m4t8 = [2.25e-1, 1.2e-1, 1.48e-2, 2.8e-4, 2.3e-5]
+    tw_k4m2t8 = [1.1e-1, 5.2e-2, 1.18e-2, 1.48e-3, 2.4e-4]
 
-    # ow_k6m6t9 = [7.18e-1, 5.0e-1, 2.0e-1, 2.2e-2, 4.6e-3]
-    # tw_k6m3t9 = [2.3e-1, 1.18e-1, 3e-2, 4.2e-3, 7.4e-4]
+    ow_k6m6t9 = [7.18e-1, 5.0e-1, 2.0e-1, 2.2e-2, 4.6e-3]
+    tw_k6m3t9 = [2.3e-1, 1.18e-1, 3e-2, 4.2e-3, 7.4e-4]
 
-    # plt.figure(0)
-    # plt.semilogy(ow_v_twoway_snr, ow_k4m4t8, label='OW Active (R=1/2)', color='blue', ls='-.', marker='o', markersize=8)
-    # plt.semilogy(ow_v_twoway_snr, tw_k4m2t8, label='TW (R=1/4)', color='orange', ls='-.', marker='o', markersize=8)
-    # plt.semilogy(ow_v_twoway_snr, ow_k6m6t9, label='OW Active (R=2/3)', color='blue', marker='^', markersize=10)
-    # plt.semilogy(ow_v_twoway_snr, tw_k6m3t9, label='TW (R=1/3)', color='orange', marker='^', markersize=10)
-    # plt.xlabel('SNR [dB] (Both Directions)')
-    # plt.ylabel('BLER')
-    # # plt.title('One-way vs. Two-Way Transmission')
-    # plt.grid(which='both')
-    # # plt.ylim(1e-5, 1)
-    # plt.legend()
-    # plt.show()
+    # These results show more a problem with the TWLIN scheme rather 
+    # that an illustration of two-way vs one-way
+    # twlin_k6t18 = [1.39e-1, 5, 5, ]
+    # cl_k6t9 = [1.97, 1.73, 1.18, 7.10e-1, 4.69e-1]
+
+    twlin_k4t16 = [5.79e-1, 4.44e-1, 2.68e-1, 1.33e-1, 7.31e-2]
+    cl_k4t8 = [1.11, 9.47e-1, 5.48e-1, 2.88e-1, 1.68e-1]
+
+    plt.figure(0)
+    plt.semilogy(ow_v_twoway_snr, ow_k4m4t8, label='OW Active (R=1/2)', color='blue', ls='-.', marker='o', markersize=8)
+    plt.semilogy(ow_v_twoway_snr, tw_k4m2t8, label='TW (R=1/4)', color='orange', ls='-.', marker='o', markersize=8)
+    plt.semilogy(ow_v_twoway_snr, ow_k6m6t9, label='OW Active (R=2/3)', color='blue', marker='^', markersize=10)
+    plt.semilogy(ow_v_twoway_snr, tw_k6m3t9, label='TW (R=1/3)', color='orange', marker='^', markersize=10)
+    plt.semilogy(ow_v_twoway_snr, twlin_k4t16, label='TWL (R=1/4)', color='green', ls='-.', marker='*', markersize=8)
+    plt.semilogy(ow_v_twoway_snr, cl_k4t8, label='CL (R=1/2)', color='black', ls='-.', marker='*', markersize=8)
+    plt.xlabel('SNR [dB] (Both Directions)')
+    plt.ylabel('BLER')
+    # plt.title('One-way vs. Two-Way Transmission')
+    plt.grid(which='both')
+    # plt.ylim(1e-5, 1)
+    plt.legend()
+    plt.show()
 
     #
     # TWOWAY MODEL COMPARISON 
@@ -92,39 +102,6 @@ if __name__=='__main__':
     twlin_l4k2t16_snr1_1 = [7.14e-1, 4.52e-1, 1.78e-1, 5.94e-2, 3.32e-2, 2.56e-2]
     twlin_l4k2t16_snr1_n1 = [8.40e-1, 5.78e-1, 3.22e-1, 2.19e-1, 1.93e-1, 1.85e-1]
 
-    # SNR1=1
-    # plt.figure(1)
-    # plt.semilogy(tw_comparison_snr2, twlc_k6m3t9_snr1_1, label='TWLC: K6, M3', color='blue', marker='o', markersize=8)
-
-    # plt.semilogy(tw_comparison_snr2, twbaf_k6m3t9_snr1_1, label='TWBAF: K6, M3', color='black', marker='o', markersize=8)
-    # plt.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_1, label='TWBAF: K6, M2', color='black', ls='-.', marker='^', markersize=10)
-
-    # plt.semilogy(tw_comparison_snr2, rnn_m3_snr1_1, label='TWRNN: K6, M3', color='orange', marker='o', markersize=8)
-    # plt.semilogy(tw_comparison_snr2, rnn_m6_snr1_1, label='TWRNN: K6, M6', color='orange', ls='-.', marker='^', markersize=10)
-    # plt.xlabel('SNR2')
-    # plt.ylabel('BLER')
-    # # plt.title(r'Two-way Comparison $SNR1=1$')
-    # plt.grid(which='both')
-    # # plt.ylim(1e-8, 1)
-    # plt.legend()
-    # plt.show()
-
-    # # SNR1=-1
-    # plt.figure(2)
-    # plt.semilogy(tw_comparison_snr2, twlc_k6m3t9_snr1_n1, label='TWLC: K6, M3', color='blue', marker='o', markersize=8)
-
-    # plt.semilogy(tw_comparison_snr2, twbaf_k6m3t9_snr1_n1, label='TWBAF: K6, M3', color='black', marker='o', markersize=8)
-    # plt.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_n1, label='TWBAF: K6, M2', color='black', ls='-.', marker='^', markersize=10)
-
-    # plt.semilogy(tw_comparison_snr2, rnn_m6_snr1_n1, label='TWRNN: K6, M3', color='orange', marker='o', markersize=8)
-    # plt.semilogy(tw_comparison_snr2, rnn_m3_snr1_n1, label='TWRNN: K6, M6', color='orange',ls='-.', marker='^', markersize=10)
-    # plt.xlabel('SNR2')
-    # plt.ylabel('BLER')
-    # plt.grid(which='both')
-    # # plt.title(r'Two-way Comparison $SNR_1=-1$')
-    # # plt.ylim(1e-4, 1)
-    # plt.legend()
-    # plt.show()
 
     # SENSITIVITY ANALYSIS
     twlc_fixsnr1_1_snr2_15 = [7.1e-1, 3.1e-1, 1.8e-2, 1.5e-4, 7.0e-5, 5.7e-5]
