@@ -154,7 +154,6 @@ if __name__=='__main__':
     ax1.semilogy(tw_comparison_snr2, rnn_m3_snr1_1, label='RNN M3', color='orange', marker='o', markersize=8)
     ax1.semilogy(tw_comparison_snr2, rnn_m6_snr1_1, label='RNN M6', color='orange', ls='-.', marker='^', markersize=10)
     ax1.semilogy(tw_comparison_snr2, twlin_b3_snr1_1, label='LIN M3', color='green', marker='o', markersize=8)
-    # ax1.set_xlabel(r'SNR$_2$ [dB]'+'\n' +r'(a) BLER comparison for SNR$_1$=1.', fontsize=12, loc='center')
     ax1.set_xlabel(r'(a) SNR$_1$=1, K=6, T=18.', fontsize=12, loc='center')
 
     ax3.semilogy(tw_comparison_snr2, twlc_k6m3t9_snr1_n1, label='LC M3', color='blue', marker='o', markersize=8)
@@ -164,14 +163,12 @@ if __name__=='__main__':
     ax3.semilogy(tw_comparison_snr2, rnn_m6_snr1_n1, label='RNN M3', color='orange', marker='o', markersize=8)
     ax3.semilogy(tw_comparison_snr2, rnn_m3_snr1_n1, label='RNN M6', color='orange',ls='-.', marker='^', markersize=10)
     ax3.semilogy(tw_comparison_snr2, twlin_b3_snr1_n1, label='LIN M3', color='green', marker='o', markersize=8)
-    # ax3.set_xlabel(r'SNR$_2$ [dB]'+'\n' +r'(b) BLER comparison for SNR$_1$=-1.', fontsize=12, loc='center')
     ax3.set_xlabel(r'(b) SNR$_1$=-1, K=6, T=18.', fontsize=12, loc='center')
 
     ax2.semilogy(tw_comparison_snr2, twlc_k4m2t5_snr1_1, label='LC M2', color='blue', marker='o', markersize=8)
     ax2.semilogy(tw_comparison_snr2, twbaf_k4m2t5_snr1_1, label='BAF M2', color='black', marker='o', markersize=8)
     ax2.semilogy(tw_comparison_snr2, twrnn_k4m2t5_snr1_1, label='RNN M2', color='orange', marker='o', markersize=8)
     ax2.semilogy(tw_comparison_snr2, twlin_l4k2t16_snr1_1, label='LIN M2', color='green', marker='o', markersize=8)
-    # ax2.set_xlabel(r'SNR$_2$ [dB]'+'\n' +r'(b) BLER for SNR$_1$=1.', fontsize=12, loc='center')
     ax2.set_xlabel(r'(c) SNR$_1$=1, K=4, T=10.', fontsize=12, loc='center')
 
     ax4.semilogy(tw_comparison_snr2, twlc_k4m2t5_snr1_n1, label='LC M2', color='blue', marker='o', markersize=8)
@@ -190,7 +187,6 @@ if __name__=='__main__':
         ax.tick_params(which='both')
         ax.grid(which='both')
         ax.legend()
-        #ax.set_xlabel(f'({q[adx]})', fontsize=12)
 
     plt.show()
 
