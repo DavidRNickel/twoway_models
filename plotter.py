@@ -21,8 +21,8 @@ if __name__=='__main__':
 
     # These results show more a problem with the TWLIN scheme rather 
     # that an illustration of two-way vs one-way
-    # twlin_k6t18 = [1.39e-1, 5, 5, ]
-    # cl_k6t9 = [1.97, 1.73, 1.18, 7.10e-1, 4.69e-1]
+    twlin_k6t18 = [1.39, 1.29, 1.12, 9.12e-1, 7.65e-1]
+    cl_k6t9 = [1.97, 1.73, 1.18, 7.10e-1, 4.69e-1]
 
     twlin_k4t16 = [5.79e-1, 4.44e-1, 2.68e-1, 1.33e-1, 7.31e-2]
     cl_k4t8 = [1.11, 9.47e-1, 5.48e-1, 2.88e-1, 1.68e-1]
@@ -32,8 +32,10 @@ if __name__=='__main__':
     plt.semilogy(ow_v_twoway_snr, tw_k4m2t8, label='TW (R=1/4)', color='orange', ls='-.', marker='o', markersize=8)
     plt.semilogy(ow_v_twoway_snr, ow_k6m6t9, label='OW Active (R=2/3)', color='blue', marker='^', markersize=10)
     plt.semilogy(ow_v_twoway_snr, tw_k6m3t9, label='TW (R=1/3)', color='orange', marker='^', markersize=10)
-    plt.semilogy(ow_v_twoway_snr, twlin_k4t16, label='TWL (R=1/4)', color='green', ls='-.', marker='*', markersize=8)
-    plt.semilogy(ow_v_twoway_snr, cl_k4t8, label='CL (R=1/2)', color='black', ls='-.', marker='*', markersize=8)
+    plt.semilogy(ow_v_twoway_snr, twlin_k4t16, label='TWL (R=1/4)', color='green', ls='-.', marker='o', markersize=8)
+    plt.semilogy(ow_v_twoway_snr, cl_k4t8, label='CL (R=1/2)', color='black', ls='-.', marker='o', markersize=8)
+    plt.semilogy(ow_v_twoway_snr, twlin_k6t18, label='TWL (R=1/3)', color='green', marker='^', markersize=10)
+    plt.semilogy(ow_v_twoway_snr, cl_k6t9, label='CL (R=2/3)', color='black', marker='^', markersize=10)
     plt.xlabel('SNR [dB] (Both Directions)')
     plt.ylabel('BLER')
     # plt.title('One-way vs. Two-Way Transmission')
