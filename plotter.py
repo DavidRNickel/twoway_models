@@ -19,14 +19,12 @@ if __name__=='__main__':
     # ow_k6m6t9 = [7.18e-1, 5.0e-1, 2.0e-1, 2.2e-2, 4.6e-3]
     # tw_k6m3t9 = [2.3e-1, 1.18e-1, 3e-2, 4.2e-3, 7.4e-4]
 
-    ow_k4m4t8 = []
-    tw_k4m2t8 = []
+    ow_k4m4t8 = [1.27e-1, 5.54e-2, 7.56e-3, 1.10e-4, 1.52e-5]
+    tw_k4m2t8 = [1.09e-1, 5.19e-2, 1.18e-2, 1.48e-3, 2.38e-4]
 
-    ow_k6m6t9 = []
-    tw_k6m3t9 = []
+    ow_k6m6t9 = [3.58e-1, 2.45e-1, 9.57e-2, 1.82e-1, 2.78e-3]
+    tw_k6m3t9 = [2.3e-1, 1.18e-1, 3.0e-2, 4.24e-3, 2.12e-4]
 
-    # These results show more a problem with the TWLIN scheme rather 
-    # that an illustration of two-way vs one-way
     twlin_k6t18 = [1.39, 1.29, 1.12, 9.12e-1, 7.65e-1]
     cl_k6t9 = [1.97, 1.73, 1.18, 7.10e-1, 4.69e-1]
 
