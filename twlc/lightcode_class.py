@@ -43,15 +43,15 @@ class Lightcode(nn.Module):
         self.enc_1 = EncDecBlock(conf.knowledge_vec_len, 1, conf, is_encoder=True, d_model=conf.d_model)
         if self.is_two_way:
             self.enc_2 = EncDecBlock(conf.knowledge_vec_len, 1, conf, is_encoder=True, d_model=conf.d_model)
-            self.dec_1 = EncDecBlock(self.T+self.M, 2**self.M, conf, d_model=conf.d_model)
-            self.dec_2 = EncDecBlock(self.T+self.M, 2**self.M, conf, d_model=conf.d_model)
+            self.dec_1 = EncDecBlock(2*self.T+self.M, 2**self.M, conf, d_model=conf.d_model)
+            self.dec_2 = EncDecBlock(2*self.T+self.M, 2**self.M, conf, d_model=conf.d_model)
         elif self.is_one_way_active:
             self.enc_2 = EncDecBlock(conf.knowledge_vec_len, 1, conf, is_encoder=True, d_model=conf.d_model)
             self.dec_1 = EncDecBlock(self.T, 2**self.M, conf, d_model=conf.d_model)
 
         else:
-            self.dec_1 = EncDecBlock(self.T, 2**self.M, conf, d_model=conf.d_model)
             self.enc_2 = lambda x: x # doing this just keeps code more consistent in transmit_symbol/process_bits_at_receiver
+            self.dec_1 = EncDecBlock(self.T, 2**self.M, conf, d_model=conf.d_model)
 
         # Power weighting-related parameters.
         self.wgt_pwr_1 = torch.nn.Parameter(torch.Tensor(self.T), requires_grad=True)
@@ -125,8 +125,12 @@ class Lightcode(nn.Module):
                                                          prev_x = self.prev_xmit_signal_2)
                                                                 
         if self.is_two_way:
-            dec_out_1, dec_out_2 = self.decode_received_symbols(torch.hstack((bitstreams_2, self.recvd_y_2)), 
-                                                                torch.hstack((bitstreams_1, self.recvd_y_1)))
+            dec_out_1, dec_out_2 = self.decode_received_symbols(torch.hstack((bitstreams_2, 
+                                                                              self.recvd_y_2, 
+                                                                              self.prev_xmit_signal_2)), 
+                                                                torch.hstack((bitstreams_1, 
+                                                                              self.recvd_y_1, 
+                                                                              self.prev_xmit_signal_1)))
         elif self.is_one_way_active:
             dec_out_1, dec_out_2 = self.decode_received_symbols(self.recvd_y_2, self.recvd_y_1)
             
