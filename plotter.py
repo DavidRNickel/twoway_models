@@ -10,6 +10,11 @@ if __name__=='__main__':
     plt.rcParams['axes.labelsize'] = 20
     plt.rcParams['axes.titlesize'] = 20
     plt.rcParams['legend.fontsize'] = 10
+
+    #
+    # Commented out results are from the old RX knowledge vector convention. 
+    #
+
     #
     # ONEWAY vs TWOWAY
     ow_v_twoway_snr = [0,1,2.5,4,5]
@@ -20,7 +25,7 @@ if __name__=='__main__':
     # tw_k6m3t9 = [2.3e-1, 1.18e-1, 3e-2, 4.2e-3, 7.4e-4]
 
     ow_k4m4t8 = [1.27e-1, 5.54e-2, 7.56e-3, 1.10e-4, 1.52e-5]
-    tw_k4m2t8 = [1.09e-1, 5.19e-2, 1.18e-2, 1.48e-3, 2.38e-4]
+    tw_k4m2t8 = [1.09e-1, 5.19e-2, 1.18e-2, 1.48e-3, 2.34e-4]
 
     ow_k6m6t9 = [3.58e-1, 2.45e-1, 9.57e-2, 1.82e-1, 2.78e-3]
     tw_k6m3t9 = [2.3e-1, 1.18e-1, 3.0e-2, 4.24e-3, 2.12e-4]
@@ -30,23 +35,6 @@ if __name__=='__main__':
 
     twlin_k4t16 = [5.79e-1, 4.44e-1, 2.68e-1, 1.33e-1, 7.31e-2]
     cl_k4t8 = [1.11, 9.47e-1, 5.48e-1, 2.88e-1, 1.68e-1]
-
-    # plt.figure(0)
-    # plt.semilogy(ow_v_twoway_snr, ow_k4m4t8, label='OW Active (R=1/2)', color='blue', ls='-.', marker='o', markersize=8)
-    # plt.semilogy(ow_v_twoway_snr, tw_k4m2t8, label='TW (R=1/4)', color='orange', ls='-.', marker='o', markersize=8)
-    # plt.semilogy(ow_v_twoway_snr, ow_k6m6t9, label='OW Active (R=2/3)', color='blue', marker='^', markersize=10)
-    # plt.semilogy(ow_v_twoway_snr, tw_k6m3t9, label='TW (R=1/3)', color='orange', marker='^', markersize=10)
-    # plt.semilogy(ow_v_twoway_snr, twlin_k4t16, label='TWL (R=1/4)', color='green', ls='-.', marker='o', markersize=8)
-    # plt.semilogy(ow_v_twoway_snr, cl_k4t8, label='CL (R=1/2)', color='black', ls='-.', marker='o', markersize=8)
-    # plt.semilogy(ow_v_twoway_snr, twlin_k6t18, label='TWL (R=1/3)', color='green', marker='^', markersize=10)
-    # plt.semilogy(ow_v_twoway_snr, cl_k6t9, label='CL (R=2/3)', color='black', marker='^', markersize=10)
-    # plt.xlabel('SNR [dB] (Both Directions)')
-    # plt.ylabel('BLER')
-    # # plt.title('One-way vs. Two-Way Transmission')
-    # plt.grid(which='both')
-    # # plt.ylim(1e-5, 1)
-    # plt.legend()
-    # plt.show()
 
     #
     # TWOWAY MODEL COMPARISON 
@@ -62,14 +50,14 @@ if __name__=='__main__':
     # twlc_k4m2t5_snr1_1 = [2.01e-1, 5.95e-2, 2.34e-2, 9.08e-3, 4.91e-3, 2.53e-3]
     # twlc_k4m2t5_snr1_n1 = [3.30e-1, 1.96e-1, 1.33e-1, 1.11e-1, 1.04e-1, 9.89e-2]
 
-    twlc_k6m3t9_snr1_1 = []
-    twlc_k6m3t9_snr1_n1 = []
+    twlc_k6m2t6_snr1_1 = [1.89e-1, 2.66e-2, 2.45e-3, 1.07e-4, 2.92e-7, 2.88e-7]
+    twlc_k6m2t6_snr1_n1 = [3.43e-1, 1.50e-1, 7.74e-2, 4.58e-2, 3.56e-2, 3.05e-2]
 
-    twlc_k6m2t6_snr1_1 = []
-    twlc_k6m2t6_snr1_n1 = []
+    twlc_k6m3t9_snr1_1 = [1.18e-1, 2.57e-2, 7.10e-4, 1.33e-5, 7.90e-6, 5.17e-7]
+    twlc_k6m3t9_snr1_n1 = [2.52e-1, 1.38e-1, 4.58e-2, 2.73e-2, 2.81e-2, 1.10e-2]
 
-    twlc_k4m2t5_snr1_1 = []
-    twlc_k4m2t5_snr1_n1 = []
+    twlc_k4m2t5_snr1_1 = [2.01e-1, 7.21e-2, 1.61e-2, 7.69e-3, 4.90e-3, 1.48e-3]
+    twlc_k4m2t5_snr1_n1 = [3.30e-1, 1.85e-1, 1.29e-1, 1.11e-1, 9.89e-2, 1.04e-1]
     
     # TWBAF
     # twbaf_k6m2t6_snr1_1 = [1.89e-1, 1.97e-2, 1.89e-3, 1.28e-4, 4.04e-7, 9.60e-8]
@@ -81,14 +69,14 @@ if __name__=='__main__':
     # twbaf_k4m2t5_snr1_1 = [1.61e-1, 5.27e-2, 1.49e-2, 7.09e-3, 3.87e-3, 2.56e-3]
     # twbaf_k4m2t5_snr1_n1 = [2.90e-1, 1.89e-1, 1.30e-1, 1.14e-1, 9.45e-2, 9.25e-2]
 
-    twbaf_k6m2t6_snr1_1 = []
-    twbaf_k6m2t6_snr1_n1 = []
+    twbaf_k6m2t6_snr1_1 = [1.89e-1, 2.41e-1, 1.48e-3, 1.16e-4, 1.28e-5, 3.95e-7]
+    twbaf_k6m2t6_snr1_n1 = [2.78e-1, 1.92e-1, 7.99e-2, 3.30e-2, 3.18e-2, 2.59e-2]
 
-    twbaf_k6m3t9_snr1_1 = []
-    twbaf_k6m3t9_snr1_n1 = []
+    twbaf_k6m3t9_snr1_1 = [1.18e-1, 1.59e-2, 1.54e-3, 4.53e-6, 2.08e-7, 1]
+    twbaf_k6m3t9_snr1_n1 = [2.52e-1, 1.14e-1, 5.12e-2, 5.62e-2, 9.37e-3, 2.22e-1]
 
-    twbaf_k4m2t5_snr1_1 = []
-    twbaf_k4m2t5_snr1_n1 = []
+    twbaf_k4m2t5_snr1_1 = [2.01e-1, 5.38e-2, 2.09e-2, 4.61e-3, 4.11e-3, 2.18e-3]
+    twbaf_k4m2t5_snr1_n1 = [2.90e-1, 1.85e-1, 1.42e-1, 1.26e-1, 1.04e-1, 9.73e-2]
 
     # TWRNN
     # Results provided by J. Kim et al.
@@ -128,12 +116,12 @@ if __name__=='__main__':
 
 
     # SENSITIVITY ANALYSIS
-    # twlc_fixsnr1_1_snr2_15 = [7.1e-1, 3.1e-1, 1.8e-2, 1.5e-4, 7.0e-5, 5.7e-5]
-    # twbaf_fixsnr1_1_snr2_15 = [7.8e-1, 3.2e-1, 9.8e-3, 3.18e-6, 6.75e-7, 5.45e-7] # m2
-    # twrnn_fix_snr1_1_snr2_15 = [4.3e-1, 1.3e-1, 1.5e-2, rnn_m3_snr1_1[3], 8.3e-7, 7.5e-7]
+    twlc_fixsnr1_1_snr2_15 = [7.1e-1, 3.1e-1, 1.8e-2, 1.5e-4, 7.0e-5, 5.7e-5]
+    twbaf_fixsnr1_1_snr2_15 = [7.8e-1, 3.2e-1, 9.8e-3, 3.18e-6, 6.75e-7, 5.45e-7] # m2
+    twrnn_fix_snr1_1_snr2_15 = [4.3e-1, 1.3e-1, 1.5e-2, rnn_m3_snr1_1[3], 8.3e-7, 7.5e-7]
 
-    twlc_fixsnr1_1_snr2_15 = []
-    twbaf_fixsnr1_1_snr2_15 = []
+    # twlc_fixsnr1_1_snr2_15 = []
+    # twbaf_fixsnr1_1_snr2_15 = []
     twrnn_fix_snr1_1_snr2_15 = [4.3e-1, 1.3e-1, 1.5e-2, rnn_m3_snr1_1[3], 8.3e-7, 7.5e-7]
     
     fig, axs = plt.subplots(2,3)
@@ -190,7 +178,6 @@ if __name__=='__main__':
 
     fig.supylabel('BLER')
     fig.supxlabel(r'SNR$_2$ [dB] (all horizontal axes)')
-    # fig.supxlabel('        SNR2')
     
     q = ['a','b','c', 'd', 'e', 'f']
     for adx, ax in enumerate(axs):
