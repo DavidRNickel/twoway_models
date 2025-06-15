@@ -12,7 +12,6 @@ from lightcode_class import Lightcode
 from test_model import test_model
 from make_argparser import make_parser
 
-
 #
 # To do one-way with active feedback, I just run the two-way model but don't
 # add in the loss wrt decoder 2 into the objective. I'm sure there are ways to
@@ -73,7 +72,8 @@ if __name__=='__main__':
     sys.stdout=outfile
 
     # Print out system information
-    print(f'Running on: {torch.cuda.get_device_name()}\n')
+    if 'cuda' in device:
+        print(f'Running on: {torch.cuda.get_device_name()}\n')
 
     # Make parameters that have to be calculated using other parameters
     conf.knowledge_vec_len = conf.M + 2*(conf.T-1)

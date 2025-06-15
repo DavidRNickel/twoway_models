@@ -13,6 +13,8 @@ from gtwc_class import GTWC
 from make_argparser import make_parser
 from test_model import test_model
 
+
+#
 # cross-entropy loss with clipping to help prevent NAN
 def custom_CE_loss(preds, targets):
     preds = F.softmax(preds, dim=1)

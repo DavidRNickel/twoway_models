@@ -17,6 +17,7 @@ from utils import *
 from test_model import test_model
 from make_argparser import make_parser
 
+
 if __name__=='__main__':
     # model setup
     parser, _ = make_parser()
