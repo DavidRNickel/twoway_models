@@ -60,8 +60,8 @@ if __name__=='__main__':
     N_train = int(1e7)  # number of training set
     bit1_train     = torch.randint(0, 2, (N_train, parameter.N_bits, 1))
     bit2_train     = torch.randint(0, 2, (N_train, parameter.N_bits, 1))
-    noise1_train   = sigma1*torch.randn((N_train, parameter.N_channel_use, 1)) 
-    noise2_train   = sigma2*torch.randn((N_train, parameter.N_channel_use, 1)) 
+    # noise1_train   = sigma1*torch.randn((N_train, parameter.N_channel_use, 1)) 
+    # noise2_train   = sigma2*torch.randn((N_train, parameter.N_channel_use, 1)) 
 
     # Validation
     N_validation = int(1e5)
@@ -126,13 +126,15 @@ if __name__=='__main__':
         for i in range(N_iter):
             bit1 = bit1_train[parameter.batch_size*i:parameter.batch_size*(i+1),:,:].view(parameter.batch_size, parameter.N_bits,1) 
             bit2 = bit2_train[parameter.batch_size*i:parameter.batch_size*(i+1),:,:].view(parameter.batch_size, parameter.N_bits,1) 
-            noise1 = noise1_train[parameter.batch_size*i:parameter.batch_size*(i+1),:,:].view(parameter.batch_size, parameter.N_channel_use,1)
-            noise2 = noise2_train[parameter.batch_size*i:parameter.batch_size*(i+1),:,:].view(parameter.batch_size, parameter.N_channel_use,1)
+            noise1 = sigma1*torch.randn((parameter.batch_size, parameter.N_channel_use, 1), device=device)
+            noise2 = sigma2*torch.randn((parameter.batch_size, parameter.N_channel_use, 1), device=device)
+            # noise1 = noise1_train[parameter.batch_size*i:parameter.batch_size*(i+1),:,:].view(parameter.batch_size, parameter.N_channel_use,1)
+            # noise2 = noise2_train[parameter.batch_size*i:parameter.batch_size*(i+1),:,:].view(parameter.batch_size, parameter.N_channel_use,1)
 
             bit1   = bit1.to(device)
             bit2   = bit2.to(device)
-            noise1 = noise1.to(device)
-            noise2 = noise2.to(device)
+            # noise1 = noise1.to(device)
+            # noise2 = noise2.to(device)
 
             # forward pass
             optimizer.zero_grad() 
