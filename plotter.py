@@ -97,7 +97,7 @@ if __name__=='__main__':
     rnn_m3_snr1_n1 = np.array(bler1_proposed)+ np.array(bler2_proposed)
 
     twrnn_k4m2t5_snr1_1 = [1.01e-1, 5.19e-2, 8.62e-3, 2.71e-3, 2.22e-3, 7.60e-4]
-    twrnn_k4m2t5_snr1_n1 = [1.65e-1, 1.08e-1, 6.20e-2, 6.31e-2, 4.80e-2, 4.70e-2]
+    twrnn_k4m2t5_snr1_n1 = [1.65e-1, 1.08e-1, 6.20e-2, 5.24-2, 4.80e-2, 4.70e-2]
 
     # linear two-way (Allerton) B=3
     bler1_linear = [6.38E-01,5.26E-01,3.64E-01,1.06E-01,1.01E-02, 3.66E-09]
