@@ -162,7 +162,7 @@ if __name__=='__main__':
     ax2.set_xlabel(r'(c) SNR$_1$=1, K=6, T=18', fontsize=12, loc='center')
 
     ax5.semilogy(tw_comparison_snr2, twlc_k6m3t9_snr1_n1, label='LC M3', color='blue', marker='o', markersize=8)
-    ax5.semilogy(tw_comparison_snr2, twlc_k6m2t6_snr1_n1, label='LC M2', color='blue', ls='-.', marker='o', markersize=8)
+    ax5.semilogy(tw_comparison_snr2, twlc_k6m2t6_snr1_n1, label='LC M2', color='blue', ls='-.', marker='^', markersize=8)
     ax5.semilogy(tw_comparison_snr2, twbaf_k6m3t9_snr1_n1, label='BAF M3', color='black', marker='o', markersize=8)
     ax5.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_n1, label='BAF M2', color='black', ls='-.', marker='^', markersize=10)
     ax5.semilogy(tw_comparison_snr2, rnn_m6_snr1_n1, label='RNN M3', color='orange', marker='o', markersize=8)
