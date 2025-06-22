@@ -56,7 +56,7 @@ if __name__=='__main__':
     twlc_k6m3t9_snr1_1 = [1.18e-1, 2.57e-2, 7.10e-4, 1.33e-5, 7.90e-6, 5.17e-7]
     twlc_k6m3t9_snr1_n1 = [2.52e-1, 1.38e-1, 4.58e-2, 2.73e-2, 2.81e-2, 1.10e-2]
 
-    twlc_k4m2t5_snr1_1 = [2.01e-1, 7.21e-2, 1.61e-2, 7.69e-3, 4.90e-3, 1.48e-3]
+    twlc_k4m2t5_snr1_1 = [2.01e-1, 7.21e-2, 1.61e-2, 7.69e-3, 1.76e-3, 1.53e-3]
     twlc_k4m2t5_snr1_n1 = [3.30e-1, 1.85e-1, 1.29e-1, 1.11e-1, 9.89e-2, 1.04e-1]
     
     # TWBAF
@@ -159,7 +159,7 @@ if __name__=='__main__':
     ax2.semilogy(tw_comparison_snr2, rnn_m6_snr1_1, label='RNN M6', color='orange', ls='-.', marker='^', markersize=10)
     ax2.semilogy(tw_comparison_snr2, twlin_k3_snr1_1, label='LIN M3', color='green', marker='o', markersize=8)
     ax2.semilogy(tw_comparison_snr2, polar_k6m18_snr1_1, label='POL (OL)', color='red', marker='*', markersize=8)
-    ax2.set_xlabel(r'(c) SNR$_1$=1, K=6, T=18', fontsize=12, loc='center')
+    ax2.set_xlabel(r'(c) SNR$_1$=1, K=6, T=18, R=1/3', fontsize=12, loc='center')
 
     ax5.semilogy(tw_comparison_snr2, twlc_k6m3t9_snr1_n1, label='LC M3', color='blue', marker='o', markersize=8)
     ax5.semilogy(tw_comparison_snr2, twlc_k6m2t6_snr1_n1, label='LC M2', color='blue', ls='-.', marker='^', markersize=8)
@@ -169,21 +169,21 @@ if __name__=='__main__':
     ax5.semilogy(tw_comparison_snr2, rnn_m3_snr1_n1, label='RNN M6', color='orange',ls='-.', marker='^', markersize=10)
     ax5.semilogy(tw_comparison_snr2, twlin_k3_snr1_n1, label='LIN M3', color='green', marker='o', markersize=8)
     ax5.semilogy(tw_comparison_snr2, polar_k6m18_snr1_n1, label='POL (OL)', color='red', marker='*', markersize=8)
-    ax5.set_xlabel(r'(d) SNR$_1$=-1, K=6, T=18', fontsize=12, loc='center')
+    ax5.set_xlabel(r'(d) SNR$_1$=-1, K=6, T=18, R=1/3', fontsize=12, loc='center')
 
     ax3.semilogy(tw_comparison_snr2, twlc_k4m2t5_snr1_1, label='LC M2', color='blue', marker='o', markersize=8)
     ax3.semilogy(tw_comparison_snr2, twbaf_k4m2t5_snr1_1, label='BAF M2', color='black', marker='o', markersize=8)
     ax3.semilogy(tw_comparison_snr2, twrnn_k4m2t5_snr1_1, label='RNN M2', color='orange', marker='o', markersize=8)
     ax3.semilogy(tw_comparison_snr2, twlin_l4k2t16_snr1_1, label='LIN M2', color='green', marker='o', markersize=8)
     ax3.semilogy(tw_comparison_snr2, polar_k4m10_snr1_1, label='POL (OL)', color='red', marker='*', markersize=8)
-    ax3.set_xlabel(r'(e) SNR$_1$=1, K=4, T=10', fontsize=12, loc='center')
+    ax3.set_xlabel(r'(e) SNR$_1$=1, K=4, T=10, R=2/5', fontsize=12, loc='center')
 
     ax6.semilogy(tw_comparison_snr2, twlc_k4m2t5_snr1_n1, label='LC M2', color='blue', marker='o', markersize=8)
     ax6.semilogy(tw_comparison_snr2, twbaf_k4m2t5_snr1_n1, label='BAF M2', color='black', marker='o', markersize=8)
     ax6.semilogy(tw_comparison_snr2, twrnn_k4m2t5_snr1_n1, label='RNN M2', color='orange', marker='o', markersize=8)
     ax6.semilogy(tw_comparison_snr2, twlin_l4k2t16_snr1_n1, label='LIN M2', color='green', marker='o', markersize=8)
     ax6.semilogy(tw_comparison_snr2, polar_k4m10_snr1_n1, label='POL (OL)', color='red', marker='*', markersize=8)
-    ax6.set_xlabel(r'(f) SNR$_1$=-1, K=4, T=10', fontsize=12, loc='center')
+    ax6.set_xlabel(r'(f) SNR$_1$=-1, K=4, T=10, R=2/5', fontsize=12, loc='center')
 
     fig.supylabel('Sum BLER (all vertical axes)')
     fig.supxlabel(r'SNR$_2$ [dB] (all horizontal axes)')

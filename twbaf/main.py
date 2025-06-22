@@ -82,10 +82,10 @@ if __name__=='__main__':
     grad_clip = conf.grad_clip
 
     num_epochs = conf.num_epochs 
-    # optimizer = torch.optim.AdamW(gtwc.parameters(), lr=conf.optim_lr, weight_decay=conf.optim_weight_decay)
-    # scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda = lambda epoch: (1-epoch/conf.num_epochs))
-    optimizer = torch.optim.Adam(gtwc.parameters(), lr=conf.optim_lr)
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=1, gamma=0.95)
+    # either optimizer works fine and both give basically the same results
+    optimizer = torch.optim.AdamW(gtwc.parameters(), lr=conf.optim_lr, weight_decay=conf.optim_weight_decay)
+    # optimizer = torch.optim.Adam(gtwc.parameters(), lr=conf.optim_lr)
+    scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda = lambda epoch: (1-epoch/conf.num_epochs))
     loss_fn = nn.CrossEntropyLoss()
 
     epoch_start = 0
