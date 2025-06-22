@@ -170,7 +170,7 @@ if __name__=='__main__':
                     ber = ber_1 + ber_2
                     bler = bler_1 + bler_2
                     print(f'Epoch (iter): {epoch} ({i}), Loss: {loss.item()}, BER: {ber}, BLER: {bler}')
-                    # eprint(f'Epoch (iter): {epoch} ({i}), Loss: {loss.item()}, BER: {ber}, BLER: {bler}')
+                    eprint(f'Epoch (iter): {epoch} ({i}), Loss: {loss.item()}, BER: {ber}, BLER: {bler}')
 
                     if conf.use_tensorboard:
                         writer.add_scalar('loss/train/BER', ber, ctr)
@@ -204,6 +204,12 @@ if __name__=='__main__':
         print(f'Epoch: {epoch}, Average loss: {loss.item()}')
         print(f'BER: {ber:e}, BLER {bler:e}')
         print('====================================================\n')
+
+        eprint(f'\nEpoch Summary')
+        eprint('====================================================')
+        eprint(f'Epoch: {epoch}, Average loss: {loss.item()}')
+        eprint(f'BER: {ber:e}, BLER {bler:e}')
+        eprint('====================================================\n')
 
         if epoch % conf.save_freq == 0:
             nowtime = datetime.now().strftime('%Y%m%d-%H%M%S')

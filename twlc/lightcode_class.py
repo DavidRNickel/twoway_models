@@ -145,8 +145,7 @@ class Lightcode(nn.Module):
         bs = b.shape[0]
         # only need to check if it's active or passive (in some sense...)
         if fb_info is not None:
-            # fbi = torch.hstack((fb_info-prev_x, torch.zeros((bs, self.T-1-t), device=self.device)))
-            fbi = torch.hstack((fb_info, torch.zeros((bs, self.T-1-t), device=self.device)))
+            fbi = torch.hstack((fb_info-prev_x, torch.zeros((bs, self.T-1-t), device=self.device)))
             px = torch.hstack((prev_x, torch.zeros((bs, self.T-1-t), device=self.device)))
         else:
             fbi = torch.zeros((bs, self.T-1), device=self.device)

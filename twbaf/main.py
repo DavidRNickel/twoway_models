@@ -13,6 +13,9 @@ from gtwc_class import GTWC
 from make_argparser import make_parser
 from test_model import test_model
 
+# print to stderr during training
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 #
 # cross-entropy loss with clipping to help prevent NAN
@@ -60,7 +63,6 @@ if __name__=='__main__':
     conf.d_model = 32
     conf.scaling_factor = 4
     conf.dropout = 0.0
-
     
     gtwc = GTWC(conf).to(device)
     if 'cuda' in device: # just in case the device is something like cuda:0
@@ -80,8 +82,10 @@ if __name__=='__main__':
     grad_clip = conf.grad_clip
 
     num_epochs = conf.num_epochs 
-    optimizer = torch.optim.AdamW(gtwc.parameters(), lr=conf.optim_lr, weight_decay=conf.optim_weight_decay)
-    scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda = lambda epoch: (1-epoch/conf.num_epochs))
+    # optimizer = torch.optim.AdamW(gtwc.parameters(), lr=conf.optim_lr, weight_decay=conf.optim_weight_decay)
+    # scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda = lambda epoch: (1-epoch/conf.num_epochs))
+    optimizer = torch.optim.Adam(gtwc.parameters(), lr=conf.optim_lr)
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=1, gamma=0.95)
     loss_fn = nn.CrossEntropyLoss()
 
     epoch_start = 0
@@ -141,6 +145,7 @@ if __name__=='__main__':
                     ctr += 1
 
                 print(f'Epoch (iter): {epoch} ({i}), Loss: {L}, BER: {ber}, BLER: {bler}')
+                eprint(f'Epoch (iter): {epoch} ({i}), Loss: {L}, BER: {ber}, BLER: {bler}')
     
         ber_tup, bler_tup, _ = test_model(model=gtwc, conf=conf)
         ber, ber_1, ber_2 = ber_tup
@@ -163,6 +168,12 @@ if __name__=='__main__':
         print(f'Epoch: {epoch}, Average loss: {np.mean(losses)}')
         print(f'BER: {ber:e}, BLER {bler:e}')
         print('====================================================\n'); nowtime = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
+
+        eprint(f'\nEpoch Summary')
+        eprint('====================================================')
+        eprint(f'Epoch: {epoch}, Average loss: {np.mean(losses)}')
+        eprint(f'BER: {ber:e}, BLER {bler:e}')
+        eprint('====================================================\n'); nowtime = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
 
         if epoch % conf.save_freq == 0:
             nowtime = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
