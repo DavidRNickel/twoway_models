@@ -37,12 +37,14 @@ class GTWC(nn.Module):
         self.relu = nn.ReLU()
         self.tanh = nn.Tanh()
 
+        rx_kv_len = 2*self.T+self.M if conf.decode_with_prev_xmit else self.T+self.M
+
         (self.emb_enc_1, self.pos_enc_enc_1, 
          self.enc_1, self.enc_raw_out_1) = general_attention_network(dim_in=conf.knowledge_vec_len, dim_out=1, dim_embed=96, d_model=conf.d_model,
                                                                      activation=self.relu, max_len=self.num_blocks, num_layers=conf.num_layers_xmit)
 
         (self.emb_dec_1, self.pos_enc_dec_1, 
-         self.dec_1, self.dec_raw_out_1) = general_attention_network(dim_in=2*self.T+self.M, dim_out=2**self.M, dim_embed=96, d_model=conf.d_model, 
+         self.dec_1, self.dec_raw_out_1) = general_attention_network(dim_in=rx_kv_len, dim_out=2**self.M, dim_embed=96, d_model=conf.d_model, 
                                                                      activation=self.relu, max_len=self.num_blocks, num_layers=conf.num_layers_recv)
 
         (self.emb_enc_2, self.pos_enc_enc_2, 
@@ -50,7 +52,7 @@ class GTWC(nn.Module):
                                                                      activation=self.relu, max_len=self.num_blocks, num_layers=conf.num_layers_xmit)
 
         (self.emb_dec_2, self.pos_enc_dec_2, 
-         self.dec_2, self.dec_raw_out_2) = general_attention_network(dim_in=2*self.T+self.M, dim_out=2**self.M, dim_embed=96, d_model=conf.d_model, 
+         self.dec_2, self.dec_raw_out_2) = general_attention_network(dim_in=rx_kv_len, dim_out=2**self.M, dim_embed=96, d_model=conf.d_model, 
                                                                      activation=self.relu, max_len=self.num_blocks, num_layers=conf.num_layers_recv)
 
         if self.use_beliefs:
@@ -126,8 +128,14 @@ class GTWC(nn.Module):
                                                                     prev_x=(self.prev_xmit_signal_1, self.prev_xmit_signal_2), 
                                                                     beliefs=(beliefs_1, beliefs_2) if self.use_beliefs else None)
 
-        dec_out_1, dec_out_2 = self.decode_received_symbols(torch.cat((self.recvd_y_2, bitstreams_2, self.prev_xmit_signal_2), axis=2),
-                                                            torch.cat((self.recvd_y_1, bitstreams_1, self.prev_xmit_signal_1), axis=2))
+        if self.conf.decode_with_prev_xmit:
+            dec_out_1, dec_out_2 = self.decode_received_symbols(torch.cat((self.recvd_y_2, bitstreams_2, self.prev_xmit_signal_2), axis=2),
+                                                                torch.cat((self.recvd_y_1, bitstreams_1, self.prev_xmit_signal_1), axis=2))
+        
+        else:
+            dec_out_1, dec_out_2 = self.decode_received_symbols(torch.cat((self.recvd_y_2, bitstreams_2), axis=2),
+                                                                torch.cat((self.recvd_y_1, bitstreams_1), axis=2))
+
 
         return dec_out_1, dec_out_2
 

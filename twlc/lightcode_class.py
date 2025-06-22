@@ -106,7 +106,8 @@ class Lightcode(nn.Module):
             if self.is_two_way:
                 x2 = self.transmit_symbol(know_vec_2, self.enc_2, t, uid=2)
             elif self.is_one_way_active: 
-                # transmit symbols for active fb encoder will be made inside p_b_a_r
+                # transmit symbols for active fb encoder will be made 
+                # inside process_bits_at_receiver
                 x2 = bitstreams_2 
             else:
                 x2 = None
@@ -131,7 +132,7 @@ class Lightcode(nn.Module):
                                                                               self.recvd_y_1, 
                                                                               self.prev_xmit_signal_1)))
         elif self.is_one_way_active:
-            dec_out_1, dec_out_2 = self.decode_received_symbols(torch.hstack((self.recvd_y_2, self.prev_xmit_signal_2[:,1:])), self.recvd_y_1)
+            dec_out_1, dec_out_2 = self.decode_received_symbols(torch.hstack((self.recvd_y_2, self.prev_xmit_signal_2[:,1:])), None)
 
         else:
             # dec_out_2 will be set to None here.
@@ -168,14 +169,14 @@ class Lightcode(nn.Module):
 
         if self.is_one_way_active: # x2 is bitstreams_2 in one_way_active case
             if t==0:
-                self.prev_xmit_signal_2 = torch.zeros((x1.shape[0],1), device=self.device)
+                self.prev_xmit_signal_2 = torch.zeros((x1.shape[0],1), device=self.device) # for consistency in make_knowledge_vec
             if t<self.T-1:
                 know_vec = self.make_knowledge_vec(x2, t+1, fb_info = self.recvd_y_2, prev_x = self.prev_xmit_signal_2)
                 x2 = self.transmit_symbol(know_vec, self.enc_2, t, uid=2)
             else:
-                x2 = torch.zeros(x1.shape[0], device=self.device)
+                x2 = torch.zeros(x1.shape[0], device=self.device) # for consistency in creating y = x2+noise_fb
 
-        elif self.is_one_way_passive:
+        elif self.is_one_way_passive: # enc_2 here is just lambda x: x
             x2 = self.transmit_symbol(y2, self.enc_2, t, uid=2)
 
         y1 =  x2 + noise_fb[:,t]
@@ -216,7 +217,6 @@ class Lightcode(nn.Module):
     def normalize_transmit_signal_power(self, x, t, uid):
         if uid==1:
             x = self.normalization(x.squeeze(-1), t, uid)
-            # print(f'ntsp x: {torch.any(torch.isnan(x))}')
             x = self.pwr_factor_1 * (self.wgt_pwr_normed_1[t] * x).squeeze(-1)
             return x
         else:
