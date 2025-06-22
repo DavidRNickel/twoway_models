@@ -152,7 +152,7 @@ if __name__=='__main__':
     ax4.set_xlabel(r'(b) Sensitivity Analysis', fontsize=12)
 
     ax2.semilogy(tw_comparison_snr2, twlc_k6m3t9_snr1_1, label='LC M3', color='blue', marker='o', markersize=8)
-    ax2.semilogy(tw_comparison_snr2, twlc_k6m2t6_snr1_1, label='LC M2', color='blue', ls='-.', marker='o', markersize=8)
+    ax2.semilogy(tw_comparison_snr2, twlc_k6m2t6_snr1_1, label='LC M2', color='blue', ls='-.', marker='^', markersize=8)
     ax2.semilogy(tw_comparison_snr2, twbaf_k6m3t9_snr1_1, label='BAF M3', color='black', marker='o', markersize=8)
     ax2.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_1, label='BAF M2', color='black', ls='-.', marker='^', markersize=10)
     ax2.semilogy(tw_comparison_snr2, rnn_m3_snr1_1, label='RNN M3', color='orange', marker='o', markersize=8)
