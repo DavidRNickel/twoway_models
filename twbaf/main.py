@@ -118,7 +118,6 @@ if __name__=='__main__':
             output_1, output_2 = gtwc(b1, b2)
             output_1 = output_1.view(bs*gtwc.num_blocks, 2**gtwc.M)
             output_2 = output_2.view(bs*gtwc.num_blocks, 2**gtwc.M)
-            # loss = loss_fn(output_1, b_one_hot_1) + loss_fn(output_2, b_one_hot_2)
             loss = custom_CE_loss(output_1, b_target_1) + custom_CE_loss(output_2, b_target_2)
 
             loss.backward()
