@@ -55,7 +55,6 @@ if __name__=='__main__':
     conf.use_belief_network = False
     conf.noise_pwr_fb = 10**(-conf.snr_fb/10)
     conf.test_batch_size = conf.batch_size
-    conf.num_iters_per_epoch = 1000
     conf.num_layers_xmit = 2 
     conf.num_layers_belief = 2
     conf.num_layers_recv = 3
@@ -125,7 +124,7 @@ if __name__=='__main__':
             losses.append(L:=loss.item()) # only works in Python >= 3.11
             optimizer.step()
 
-            if i % 100 == 0:
+            if i % 10 == 0:
                 bit_estimates_1 = gtwc.one_hot_to_bits(output_1).bool().view(bs,-1)
                 bit_estimates_2 = gtwc.one_hot_to_bits(output_2).bool().view(bs,-1)
                 ber_1, bler_1 = gtwc.calc_error_rates(bit_estimates_1, bitstreams_1.bool())
