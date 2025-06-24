@@ -12,10 +12,6 @@ if __name__=='__main__':
     plt.rcParams['legend.fontsize'] = 10
 
     #
-    # Commented out results are from the old RX knowledge vector convention. 
-    #
-
-    #
     # ONEWAY vs TWOWAY
     ow_v_twoway_snr = [0,1,2.5,4,5]
     ow_k4m4t8 = [1.27e-1, 5.54e-2, 7.56e-3, 1.10e-4, 1.52e-5]
@@ -35,6 +31,7 @@ if __name__=='__main__':
     tw_comparison_snr2 = [1, 5, 10, 15, 20, 30]
     
     # TWLC
+    # trained on 1e10 datapoints
     twlc_k6m2t6_snr1_1 = [1.89e-1, 2.66e-2, 2.45e-3, 1.07e-4, 2.92e-7, 2.88e-7]
     twlc_k6m2t6_snr1_n1 = [3.43e-1, 1.50e-1, 7.74e-2, 4.58e-2, 3.56e-2, 3.05e-2]
 
@@ -68,6 +65,7 @@ if __name__=='__main__':
     twbaf_k4m2t5_snr1_n1 = [3.30e-1, 1.91e-1, 1.28e-1, 1.13e-1, 1.06e-1, 9.85e-2]
 
     # fewer datapoints - without previous xmit
+    # =================================================
     # twbaf_k6m2t6_snr1_1 = [2.41e-1, 2.90e-2, 3.12e-3, 4.75e-4, 1.44e-6, 1.58e-4] 
     # twbaf_k6m2t6_snr1_n1 = [2.89e-1, 3.22e-1, 1.07e-1, 5.06e-2, 3.75e-2, 3.19e-2]
 
@@ -76,6 +74,7 @@ if __name__=='__main__':
 
     # twbaf_k4m2t5_snr1_1 = [1.61e-1, 7.64e-2, 1.60e-2, 6.19e-3, 3.89e-3, 3.47e-3]
     # twbaf_k4m2t5_snr1_n1 = [3.30e-1, 1.85e-1, 1.28e-1, 1.10e-1, 1.01e-1, 9.74e-2]
+    # =================================================
 
     # TWRNN
     # Results provided by J. Kim et al.
@@ -121,11 +120,8 @@ if __name__=='__main__':
     polar_k6m18_snr1_n1 = [1.08e-1, 9.18e-2, 9.18e-2, 9.18e-2, 9.18e-2, 9.18e-2]
 
     # SENSITIVITY ANALYSIS
-    # twlc_fixsnr1_1_snr2_15 = [7.1e-1, 3.1e-1, 1.8e-2, 1.5e-4, 7.0e-5, 5.7e-5]
-    twbaf_fixsnr1_1_snr2_15 = [7.8e-1, 3.2e-1, 9.8e-3, 3.18e-6, 6.75e-7, 5.45e-7] # m2
-
+    twbaf_fixsnr1_1_snr2_15 = [7.12e-2, 3.02e-2, 5.34e-4, 1.22e-4, 1.01e-6, 3.36e-7] # run with M=2
     twlc_fixsnr1_1_snr2_15 = [2.22e-1, 8.46e-2, 3.84e-3, 1.07e-4, 6.00e-5, 4.88e-5]
-    # twbaf_fixsnr1_1_snr2_15 = [7.81e-1, 3.50e-1, 1.72e-2, 1.33e-5, 3.56e-6, 3.16e-6]
     twrnn_fix_snr1_1_snr2_15 = [4.3e-1, 1.3e-1, 1.5e-2, rnn_m3_snr1_1[3], 8.3e-7, 7.5e-7]
     
     fig, axs = plt.subplots(2,3)
