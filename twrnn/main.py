@@ -1,6 +1,6 @@
 import math
 import numpy as np
-from scipy.special import erf
+# from scipy.special import erf
 import sys, os, re
 import time
 from tqdm import tqdm
@@ -9,7 +9,6 @@ import torch
 import torch.optim as optim
 import torch.nn.functional as F
 
-from params import params
 from datetime import datetime
 
 from twrnn_class import Twoway_coding
@@ -72,13 +71,11 @@ if __name__=='__main__':
     print('np1: ', np1)
     print('np2: ', np2)
 
-    eprint('here') 
     model = Twoway_coding(parameter).to(device)
-    # if 'cuda' in device:
-    #     torch.backends.cudnn.benchmark = True
-    #     sys.exit()
-    # else:
-    #     model = Twoway_coding(parameter)
+    if 'cuda' in device:
+        torch.backends.cudnn.benchmark = True
+    else:
+        model = Twoway_coding(parameter)
 
     model.sigma1 = sigma1
     model.sigma2 = sigma2

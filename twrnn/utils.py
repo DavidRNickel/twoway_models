@@ -9,7 +9,6 @@ import torch.nn.functional as F
 import sys
 import time
 
-from params import params
 from datetime import datetime
 
 # Convert the `bit vector' with (batch,K,1) to 'one hot vector' with (batch,2^K)

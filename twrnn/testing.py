@@ -4,7 +4,6 @@ import numpy as np
 import os, sys, re
 from tqdm import tqdm
 
-from params import params
 from twrnn_class import Twoway_coding
 from utils import *
 from test_model import test_model

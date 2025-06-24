@@ -9,7 +9,6 @@ import torch.nn.functional as F
 import sys
 import time
 
-from params import params
 from datetime import datetime
 
 from twrnn_class import Twoway_coding

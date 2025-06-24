@@ -89,11 +89,11 @@ if __name__=='__main__':
 
     bler1_proposed = [1.15E-01,1.16E-01,2.58E-02,1.15E-02,2.14E-03,9.19E-04]
     bler2_proposed = [2.19E-02,1.98E-04,3.09E-03,1.09E-03,2.60E-04,1.11E-05]
-    rnn_m6_snr1_n1 = np.array(bler1_proposed)+ np.array(bler2_proposed)
+    rnn_m3_snr1_n1 = np.array(bler1_proposed)+ np.array(bler2_proposed)
     
     bler1_proposed = [2.22E-01,1.85E-01,3.78E-02,1.47E-02,6.31E-03,6.59E-03]
     bler2_proposed = [6.82E-02,8.44E-03,2.46E-03,7.16E-04,7.50E-05,2.32E-06]
-    rnn_m3_snr1_n1 = np.array(bler1_proposed)+ np.array(bler2_proposed)
+    rnn_m6_snr1_n1 = np.array(bler1_proposed)+ np.array(bler2_proposed)
 
     twrnn_k4m2t5_snr1_1 = [1.01e-1, 5.19e-2, 8.62e-3, 2.71e-3, 2.22e-3, 7.60e-4]
     twrnn_k4m2t5_snr1_n1 = [1.65e-1, 1.08e-1, 6.20e-2, 5.24e-2, 4.80e-2, 4.70e-2]
@@ -125,6 +125,11 @@ if __name__=='__main__':
     twbaf_fixsnr1_1_snr2_15 = [8.23e-1, 4.27e-1, 3.76e-2, 1.23e-4, 4.32e-5, 3.52e-5] 
     twrnn_fix_snr1_1_snr2_15 = [4.3e-1, 1.3e-1, 1.5e-2, rnn_m3_snr1_1[3], 8.3e-7, 7.5e-7]
     
+    twbaf_fixsnr1_1_snr2_15_m3 = [8.21e-1, 3.83e-1, 2.04e-2, 4.87e-5, 1.96e-5, 1.52e-5]
+    twlc_fixsnr1_1_snr2_15_m3 = [7.35e-1, 3.46e-1, 3.09e-2, 1.05e-3, 6.00e-4, 4.93e-4]
+
+    twlc_k6m3t9_snr1_1 = [1.18e-1, 2.57e-2, 7.10e-4, 1.33e-5, 7.90e-6, 5.17e-7]
+    
     fig, axs = plt.subplots(2,3)
     axs = list(chain.from_iterable(axs))
     ax1,ax2,ax3,ax4,ax5,ax6=axs
@@ -145,7 +150,7 @@ if __name__=='__main__':
     ax4.semilogy(tw_comparison_snr2, twrnn_fix_snr1_1_snr2_15, label='RNN (Fixed)', color='orange', marker='o', markersize=8)
     ax4.semilogy(tw_comparison_snr2, rnn_m3_snr1_1, label='RNN (Orig)', color='orange',ls='-.', marker='^', markersize=10)
     ax4.semilogy(tw_comparison_snr2, twlin_k3_snr1_1, label='LIN (Orig)', color='green', marker='o', markersize=8)
-    ax4.set_xlabel(r'(b) Sensitivity Analysis', fontsize=12)
+    ax4.set_xlabel(r'(b) Sensitivity Analysis, T=18, R=1/3', fontsize=12)
 
     ax2.semilogy(tw_comparison_snr2, twlc_k6m3t9_snr1_1, label=r'LC M=3', color='blue', marker='o', markersize=8)
     ax2.semilogy(tw_comparison_snr2, twlc_k6m2t6_snr1_1, label=r'LC M=2', color='blue', ls='-.', marker='^', markersize=8)
