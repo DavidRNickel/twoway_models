@@ -120,8 +120,8 @@ if __name__=='__main__':
     polar_k6m18_snr1_n1 = [1.08e-1, 9.18e-2, 9.18e-2, 9.18e-2, 9.18e-2, 9.18e-2]
 
     # SENSITIVITY ANALYSIS
-    twbaf_fixsnr1_1_snr2_15 = [7.12e-2, 3.02e-2, 5.34e-4, 1.22e-4, 1.01e-6, 3.36e-7] # run with M=2
     twlc_fixsnr1_1_snr2_15 = [2.22e-1, 8.46e-2, 3.84e-3, 1.07e-4, 6.00e-5, 4.88e-5]
+    twbaf_fixsnr1_1_snr2_15 = [8.23e-1, 4.27e-1, 3.76e-2, 1.23e-4, 4.32e-5, 3.52e-5] # run with M=2
     twrnn_fix_snr1_1_snr2_15 = [4.3e-1, 1.3e-1, 1.5e-2, rnn_m3_snr1_1[3], 8.3e-7, 7.5e-7]
     
     fig, axs = plt.subplots(2,3)
