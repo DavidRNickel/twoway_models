@@ -170,6 +170,7 @@ if __name__=='__main__':
                         'loss' : loss.item()},
                         os.path.join(parameter.save_dir, f'{nowtime}.pt'))
 
+        
         ber1_val, ber2_val, bler1_val, bler2_val, _, _ = test_model(model, parameter, N_validation)
         # Summary of each epoch
         print('Summary: Epoch: {}, lr: {}, Average loss: {:.4f}, BLER: {:.4f}'.format(epoch, optimizer.param_groups[0]['lr'], loss_training/N_iter, bler1_val+bler2_val) )
