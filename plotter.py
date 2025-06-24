@@ -64,7 +64,7 @@ if __name__=='__main__':
 
     twbaf_k4m2t5_snr1_1 = [1.61e-1, 6.84e-2, 2.10e-2, 7.30e-3, 6.93e-3, 2.50e-3]
     twbaf_k4m2t5_snr1_n1 = [3.30e-1, 1.91e-1, 1.28e-1, 1.13e-1, 1.06e-1, 9.85e-2]
-
+    
     # fewer datapoints - without previous xmit
     # =================================================
     # twbaf_k6m2t6_snr1_1 = [2.41e-1, 2.90e-2, 3.12e-3, 4.75e-4, 1.44e-6, 1.58e-4] 
@@ -126,10 +126,7 @@ if __name__=='__main__':
     twrnn_fix_snr1_1_snr2_15 = [4.3e-1, 1.3e-1, 1.5e-2, rnn_m3_snr1_1[3], 8.3e-7, 7.5e-7]
     
     twbaf_fixsnr1_1_snr2_15_m3 = [8.21e-1, 3.83e-1, 2.04e-2, 4.87e-5, 1.96e-5, 1.52e-5]
-    twlc_fixsnr1_1_snr2_15_m3 = [7.35e-1, 3.46e-1, 3.09e-2, 1.05e-3, 6.00e-4, 4.93e-4]
 
-    twlc_k6m3t9_snr1_1 = [1.18e-1, 2.57e-2, 7.10e-4, 1.33e-5, 7.90e-6, 5.17e-7]
-    
     fig, axs = plt.subplots(2,3)
     axs = list(chain.from_iterable(axs))
     ax1,ax2,ax3,ax4,ax5,ax6=axs
