@@ -18,12 +18,15 @@ from test_model import test_model
 from make_argparser import make_parser
 
 
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+
 if __name__=='__main__':
     # model setup
     parser, _ = make_parser()
     parameter = parser.parse_args(sys.argv[1:])
-    use_cuda = parameter.use_cuda and torch.cuda.is_available()
-    device = torch.device("cuda" if use_cuda else "cpu")
+    device = parameter.device
+    use_cuda = 'cuda' in device 
     parameter.device = device
 
     os.makedirs(parameter.save_dir, exist_ok=True) 
@@ -69,11 +72,13 @@ if __name__=='__main__':
     print('np1: ', np1)
     print('np2: ', np2)
 
-    if use_cuda:
-        model = Twoway_coding(parameter).to(device)
-        torch.backends.cudnn.benchmark = True
-    else:
-        model = Twoway_coding(parameter)
+    eprint('here') 
+    model = Twoway_coding(parameter).to(device)
+    # if 'cuda' in device:
+    #     torch.backends.cudnn.benchmark = True
+    #     sys.exit()
+    # else:
+    #     model = Twoway_coding(parameter)
 
     model.sigma1 = sigma1
     model.sigma2 = sigma2

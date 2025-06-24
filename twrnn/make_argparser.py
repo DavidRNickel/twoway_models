@@ -8,7 +8,8 @@ def make_parser():
     parser = argparse.ArgumentParser(description='TWRNN Arguments')
 
     parser.add_argument('--use-tensorboard', type=lambda x: bool(strtobool(x)), default=False, nargs='?', const=True)
-    parser.add_argument('--use-cuda', type=lambda x: bool(strtobool(x)), default=True, nargs='?', const=True)
+    parser.add_argument('--device', type=str, default='cuda' if torch.cuda.is_available() else 'cpu', nargs='?', help='set \'cuda\' if available else \'cpu\'')
+    # parser.add_argument('--use-cuda', type=lambda x: bool(strtobool(x)), default=True, nargs='?', const=True)
     parser.add_argument('--save-freq', type=int, default=10, help='frequency (in terms of epochs) at which the model is saved throughout training')
     parser.add_argument('--loadfile', type=str, default=None, nargs='?', help='file containing saved torch model for restarting training or running tests')
     parser.add_argument('--save-dir', type=str, default='tmp', nargs='?', help='directory to which everything is saved', required=True)
