@@ -65,7 +65,7 @@ if __name__=='__main__':
     twbaf_k4m2t5_snr1_1 = [1.61e-1, 6.84e-2, 2.10e-2, 7.30e-3, 6.93e-3, 2.50e-3]
     twbaf_k4m2t5_snr1_n1 = [3.30e-1, 1.91e-1, 1.28e-1, 1.13e-1, 1.06e-1, 9.85e-2]
 
-    # without previous xmit
+    # fewer datapoints - without previous xmit
     # =================================================
     # twbaf_k6m2t6_snr1_1 = [2.41e-1, 2.90e-2, 3.12e-3, 4.75e-4, 1.44e-6, 1.58e-4] 
     # twbaf_k6m2t6_snr1_n1 = [2.89e-1, 3.22e-1, 1.07e-1, 5.06e-2, 3.75e-2, 3.19e-2]
@@ -76,7 +76,6 @@ if __name__=='__main__':
     # twbaf_k4m2t5_snr1_1 = [1.61e-1, 7.64e-2, 1.60e-2, 6.19e-3, 3.89e-3, 3.47e-3]
     # twbaf_k4m2t5_snr1_n1 = [3.30e-1, 1.85e-1, 1.28e-1, 1.10e-1, 1.01e-1, 9.74e-2]
     # =================================================
-
 
     # TWRNN
     # Results provided by J. Kim et al.
@@ -121,10 +120,9 @@ if __name__=='__main__':
     polar_k6m18_snr1_1 = [3.14e-2, 1.57e-2, 1.57e-2, 1.57e-2, 1.57e-2, 1.57e-2]
     polar_k6m18_snr1_n1 = [1.08e-1, 9.18e-2, 9.18e-2, 9.18e-2, 9.18e-2, 9.18e-2]
 
-    # SENSITIVITY ANALYSIS
-    twbaf_fixsnr1_1_snr2_15 = [7.12e-2, 3.02e-2, 5.34e-4, 1.23e-4, 1.01e-6, 3.36e-7] # run with M=2
-    twlc_fixsnr1_1_snr2_15 = [2.22e-1, 8.46e-2, 3.84e-3, 1.07e-4, 6.00e-5, 4.88e-5]
-    twbaf_fixsnr1_1_snr2_15 = [8.23e-1, 4.27e-1, 3.76e-2, 1.23e-4, 4.32e-5, 3.52e-5] # run with M=2
+    # SENSITIVITY ANALYSIS] # run with M=2
+    tw2_15 = [2.22e-1, 8.46e-2, 3.84e-3, 1.07e-4, 6.00e-5, 4.88e-5]
+    twbaf_fixsnr1_1_snr2_15 = [8.23e-1, 4.27e-1, 3.76e-2, 1.23e-4, 4.32e-5, 3.52e-5] 
     twrnn_fix_snr1_1_snr2_15 = [4.3e-1, 1.3e-1, 1.5e-2, rnn_m3_snr1_1[3], 8.3e-7, 7.5e-7]
     
     fig, axs = plt.subplots(2,3)
