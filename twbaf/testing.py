@@ -57,10 +57,10 @@ if __name__=='__main__':
 
     print('Getting saved mean and standard deviation...')
     ms = calc_mean_and_std(model, conf)
-    model.mean_saved_1 = ms[0]
-    model.std_saved_1 = ms[2]
-    model.mean_saved_2 = ms[1]
-    model.std_saved_2 = ms[3]
+    model.mean_saved_1 = ms[0].to(device)
+    model.std_saved_1 = ms[2].to(device)
+    model.mean_saved_2 = ms[1].to(device)
+    model.std_saved_2 = ms[3].to(device)
     print(f'Mean and STD: {ms}')
 
     print('Testing...')

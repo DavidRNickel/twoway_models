@@ -9,8 +9,9 @@ import torch.nn.functional as F
 
 from attention_network import general_attention_network
 
-# constants
-ONE_OVER_SQRT_TWO = 1/np.sqrt(2)
+# print to stderr during training
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 class GTWC(nn.Module):
     def __init__(self, conf):
@@ -76,13 +77,24 @@ class GTWC(nn.Module):
         self.xmit_pwr_track_2 = []
 
         # Parameters for normalizing mean and variance of transmit signals.
-        self.mean_batch_1 = torch.zeros(self.T)
-        self.std_batch_1 = torch.ones(self.T)
-        self.mean_saved_1 = torch.zeros(self.T)
+        # self.mean_batch_1 = torch.zeros(self.T)
+        # self.std_batch_1 = torch.ones(self.T)
+        # self.mean_saved_1 = torch.zeros(self.T)
 
-        self.mean_batch_2 = torch.zeros(self.T)
-        self.std_batch_2 = torch.ones(self.T)
-        self.mean_saved_2 = torch.zeros(self.T)
+        # self.mean_batch_2 = torch.zeros(self.T)
+        # self.std_batch_2 = torch.ones(self.T)
+        # self.mean_saved_2 = torch.zeros(self.T)
+
+        self.mean_batch_1 = torch.zeros(self.T, self.num_blocks)
+        self.std_batch_1 = torch.ones(self.T, self.num_blocks)
+        self.mean_saved_1 = torch.zeros(self.T, self.num_blocks)
+        self.std_saved_1 = torch.zeros(self.T, self.num_blocks)
+
+        self.mean_batch_2 = torch.zeros(self.T, self.num_blocks)
+        self.std_batch_2 = torch.ones(self.T, self.num_blocks)
+        self.mean_saved_2 = torch.zeros(self.T, self.num_blocks)
+        self.std_saved_2 = torch.zeros(self.T, self.num_blocks)
+
         self.normalization_with_saved_data = False # True: inference w/ saved mean, var; False: calculate mean, var
 
     #
@@ -194,13 +206,13 @@ class GTWC(nn.Module):
         x1 = self.pos_enc_enc_1(x1)
         x1 = self.enc_1(x1)
         x1 = self.enc_raw_out_1(x1).squeeze(-1)
-        x1 = self.tanh(x1 - x1.mean())
+        x1 = self.tanh(x1 - x1.mean(0))
 
         x2 = self.emb_enc_2(k2)
         x2 = self.pos_enc_enc_2(x2)
         x2 = self.enc_2(x2)
         x2 = self.enc_raw_out_2(x2).squeeze(-1)
-        x2 = self.tanh(x2 - x2.mean())
+        x2 = self.tanh(x2 - x2.mean(0))
 
         return self.normalize_transmit_signal_power(x1, x2, t)
 
@@ -306,8 +318,10 @@ class GTWC(nn.Module):
     def normalization(self, inputs, t_idx, uid):
         e = 1e-8
         if uid==1:
-            mean_batch_1 = torch.mean(inputs)
-            std_batch_1 = torch.std(inputs)
+            # mean_batch_1 = torch.mean(inputs)
+            # std_batch_1 = torch.std(inputs)
+            mean_batch_1 = torch.mean(inputs,0)
+            std_batch_1 = torch.std(inputs,0)
             if self.training == True:
                 outputs = (inputs - mean_batch_1) / (std_batch_1+e)
             else:
@@ -319,8 +333,10 @@ class GTWC(nn.Module):
                     outputs = (inputs - mean_batch_1) / (std_batch_1+e)
 
         else:
-            mean_batch_2 = torch.mean(inputs)
-            std_batch_2 = torch.std(inputs)
+            # mean_batch_2 = torch.mean(inputs)
+            # std_batch_2 = torch.std(inputs)
+            mean_batch_2 = torch.mean(inputs,0)
+            std_batch_2 = torch.std(inputs,0)
             if self.training == True:
                 outputs = (inputs - mean_batch_2) / (std_batch_2+e)
             else:

@@ -55,27 +55,14 @@ if __name__=='__main__':
     
 
     # TWBAF
-    # with previous xmit
-    twbaf_k6m2t6_snr1_1 = [7.12e-2, 3.00e-2, 5.32e-4, 1.23e-4, 9.89e-7, 3.4e-7]
-    twbaf_k6m2t6_snr1_n1 = [3.43e-1, 1.57e-1, 1.02e-1, 6.99e-2, 2.60e-2, 2.95e-2]
+    twbaf_k6m2t6_snr1_1 = [1.89e-1, 3.69e-2, 3.19e-3, 1.51e-5, 9.96e-7, 1.08e-7]
+    twbaf_k6m2t6_snr1_n1 = [3.95e-1, 1.53e-1, 7.37e-2, 4.41e-2, 3.33e-2, 3.19e-2]
 
-    twbaf_k6m3t9_snr1_1 = [1.18e-1, 1.86e-2, 1.19e-3, 4.94e-5, 6.17e-6, 1.04e-6]
-    twbaf_k6m3t9_snr1_n1 = [2.52e-1, 1.26e-1, 5.48e-2, 3.05e-2, 1.85e-2, 6.40e-3]
+    twbaf_k6m3t9_snr1_1 = [1.18e-1, 4.62e-2, 7.78e-4, 6.94e-5, 2.66e-5, 7.12e-7]
+    twbaf_k6m3t9_snr1_n1 = [2.29e-1, 1.26e-1, 7.08e-2, 3.14e-2, 1.79e-2, 4.16e-3]
 
-    twbaf_k4m2t5_snr1_1 = [1.61e-1, 6.84e-2, 2.10e-2, 7.30e-3, 6.93e-3, 2.50e-3]
-    twbaf_k4m2t5_snr1_n1 = [3.30e-1, 1.91e-1, 1.28e-1, 1.13e-1, 1.06e-1, 9.85e-2]
-    
-    # fewer datapoints - without previous xmit
-    # =================================================
-    # twbaf_k6m2t6_snr1_1 = [2.41e-1, 2.90e-2, 3.12e-3, 4.75e-4, 1.44e-6, 1.58e-4] 
-    # twbaf_k6m2t6_snr1_n1 = [2.89e-1, 3.22e-1, 1.07e-1, 5.06e-2, 3.75e-2, 3.19e-2]
-
-    # twbaf_k6m3t9_snr1_1 = [1.18e-1, 3.35e-2, 5.46e-4, 3.60e-5, 2.15e-5, 1.70e-6] 
-    # twbaf_k6m3t9_snr1_n1 = [2.52e-1, 1.14e-1, 5.45e-2, 3.94e-2, 1.86e-2, 8.39e-3]
-
-    # twbaf_k4m2t5_snr1_1 = [1.61e-1, 7.64e-2, 1.60e-2, 6.19e-3, 3.89e-3, 3.47e-3]
-    # twbaf_k4m2t5_snr1_n1 = [3.30e-1, 1.85e-1, 1.28e-1, 1.10e-1, 1.01e-1, 9.74e-2]
-    # =================================================
+    twbaf_k4m2t5_snr1_1 = [2.01e-1, 6.25e-2, 1.94e-2, 1.49e-2, 3.10e-3, 3.00e-3]
+    twbaf_k4m2t5_snr1_n1 = [3.30e-1, 1.74e-1, 1.48e-1, 1.12e-1, 9.84e-2, 9.45e-2]
 
     # TWRNN
     # Results provided by J. Kim et al.
@@ -122,10 +109,11 @@ if __name__=='__main__':
 
     # SENSITIVITY ANALYSIS] # run with M=2
     twlc_fixsnr1_1_snr2_15 = [2.22e-1, 8.46e-2, 3.84e-3, 1.07e-4, 6.00e-5, 4.88e-5]
-    twbaf_fixsnr1_1_snr2_15 = [8.23e-1, 4.27e-1, 3.76e-2, 1.23e-4, 4.32e-5, 3.52e-5] 
     twrnn_fix_snr1_1_snr2_15 = [4.3e-1, 1.3e-1, 1.5e-2, rnn_m3_snr1_1[3], 8.3e-7, 7.5e-7]
+    twbaf_fixsnr1_1_snr2_15_m2 = [7.68e-1, 3.31e-1, 1.60e-2, 1.51e-5, 5.08e-6, 3.90e-6]
+    # twbaf_fixsnr1_1_snr2_15_m3 = [7.59e-1, 3.34e-1, 1.78e-2, 6.91e-5, 3.19e-5, 2.51e-5]
     
-    twbaf_fixsnr1_1_snr2_15_m3 = [8.21e-1, 3.83e-1, 2.04e-2, 4.87e-5, 1.96e-5, 1.52e-5]
+    
 
     fig, axs = plt.subplots(2,3)
     axs = list(chain.from_iterable(axs))
@@ -142,7 +130,7 @@ if __name__=='__main__':
 
     ax4.semilogy(tw_comparison_snr2, twlc_fixsnr1_1_snr2_15, label='LC (Fixed)', color='blue', marker='o', markersize=8)
     ax4.semilogy(tw_comparison_snr2, twlc_k6m2t6_snr1_1, label='LC (Orig)', color='blue', ls='-.', marker='^', markersize=10)
-    ax4.semilogy(tw_comparison_snr2, twbaf_fixsnr1_1_snr2_15_m3, label='BAF (Fixed)', color='black', marker='o', markersize=8)
+    ax4.semilogy(tw_comparison_snr2, twbaf_fixsnr1_1_snr2_15_m2, label='BAF (Fixed)', color='black', marker='o', markersize=8)
     ax4.semilogy(tw_comparison_snr2, twbaf_k6m3t9_snr1_1, label='BAF (Orig)', color='black',ls='-.', marker='^', markersize=10)
     ax4.semilogy(tw_comparison_snr2, twrnn_fix_snr1_1_snr2_15, label='RNN (Fixed)', color='orange', marker='o', markersize=8)
     ax4.semilogy(tw_comparison_snr2, rnn_m3_snr1_1, label='RNN (Orig)', color='orange',ls='-.', marker='^', markersize=10)
