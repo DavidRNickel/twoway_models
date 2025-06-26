@@ -17,7 +17,6 @@ def make_parser():
     parser.add_argument('--K', type=int, default=6)
     parser.add_argument('--M', type=int, default=3)
     parser.add_argument('--T', type=int, default=9)
-    parser.add_argument('--N', type=int, default=-1)
     
     parser.add_argument('--snr-ff', type=float, default=1, help='SNR1')
     parser.add_argument('--snr-fb', type=float, default=20, help='SNR2')

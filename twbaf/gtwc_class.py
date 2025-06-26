@@ -23,11 +23,10 @@ class GTWC(nn.Module):
         self.device = conf.device
         self.batch_size = conf.batch_size
         self.use_beliefs = conf.use_belief_network
-        self.N = conf.N
         self.K = conf.K
         self.M = conf.M
         self.T = conf.T
-        print(f'K: {self.K}, M: {self.M}, N: {self.N}, T: {self.T}')
+        print(f'K: {self.K}, M: {self.M}, T: {self.T}')
         self.num_blocks = self.K // self.M
         self.noise_pwr_ff = conf.noise_pwr_ff
         self.noise_pwr_fb = conf.noise_pwr_fb
