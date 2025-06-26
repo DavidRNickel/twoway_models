@@ -112,8 +112,7 @@ if __name__=='__main__':
     twrnn_fix_snr1_1_snr2_15 = [4.3e-1, 1.3e-1, 1.5e-2, rnn_m3_snr1_1[3], 8.3e-7, 7.5e-7]
     twbaf_fixsnr1_1_snr2_15_m2 = [7.68e-1, 3.31e-1, 1.60e-2, 1.51e-5, 5.08e-6, 3.90e-6]
     # twbaf_fixsnr1_1_snr2_15_m3 = [7.59e-1, 3.34e-1, 1.78e-2, 6.91e-5, 3.19e-5, 2.51e-5]
-    
-    
+
 
     fig, axs = plt.subplots(2,3)
     axs = list(chain.from_iterable(axs))
@@ -131,7 +130,7 @@ if __name__=='__main__':
     ax4.semilogy(tw_comparison_snr2, twlc_fixsnr1_1_snr2_15, label='LC (Fixed)', color='blue', marker='o', markersize=8)
     ax4.semilogy(tw_comparison_snr2, twlc_k6m2t6_snr1_1, label='LC (Orig)', color='blue', ls='-.', marker='^', markersize=10)
     ax4.semilogy(tw_comparison_snr2, twbaf_fixsnr1_1_snr2_15_m2, label='BAF (Fixed)', color='black', marker='o', markersize=8)
-    ax4.semilogy(tw_comparison_snr2, twbaf_k6m3t9_snr1_1, label='BAF (Orig)', color='black',ls='-.', marker='^', markersize=10)
+    ax4.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_1, label='BAF (Orig)', color='black',ls='-.', marker='^', markersize=10)
     ax4.semilogy(tw_comparison_snr2, twrnn_fix_snr1_1_snr2_15, label='RNN (Fixed)', color='orange', marker='o', markersize=8)
     ax4.semilogy(tw_comparison_snr2, rnn_m3_snr1_1, label='RNN (Orig)', color='orange',ls='-.', marker='^', markersize=10)
     ax4.semilogy(tw_comparison_snr2, twlin_k3_snr1_1, label='LIN (Orig)', color='green', marker='o', markersize=8)

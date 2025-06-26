@@ -21,7 +21,7 @@ def make_parser():
     
     parser.add_argument('--snr-ff', type=float, default=1, help='SNR1')
     parser.add_argument('--snr-fb', type=float, default=20, help='SNR2')
-    parser.add_argument('--decode-with-prev-xmit', type=lambda x: bool(strtobool(x)), default=False, nargs='?', const=True)
+    parser.add_argument('--decode-with-prev-xmit', type=lambda x: bool(strtobool(x)), default=True, nargs='?', const=True)
 
     parser.add_argument('--device', type=str, default='cuda' if torch.cuda.is_available() else 'cpu', nargs='?', help='set \'cuda\' if available else \'cpu\'')
 
