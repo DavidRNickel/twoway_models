@@ -117,14 +117,14 @@ if __name__=='__main__':
     fig, axs = plt.subplots(2,3)
     axs = list(chain.from_iterable(axs))
     ax1,ax2,ax3,ax4,ax5,ax6=axs
-    ax1.semilogy(ow_v_twoway_snr, ow_k4m4t8, label=r'ALC (R=1/2)', color='blue', ls='-.', marker='o', markersize=8)
-    ax1.semilogy(ow_v_twoway_snr, tw_k4m2t8, label=r'TWLC (R=1/4)', color='orange', ls='-.', marker='o', markersize=8)
-    ax1.semilogy(ow_v_twoway_snr, ow_k6m6t9, label=r'ALC (R=2/3)', color='blue', marker='^', markersize=10)
-    ax1.semilogy(ow_v_twoway_snr, tw_k6m3t9, label=r'TWLC (R=1/3)', color='orange', marker='^', markersize=10)
-    ax1.semilogy(ow_v_twoway_snr, twlin_k4t16, label=r'TWLIN (R=1/4)', color='green', ls='-.', marker='o', markersize=8)
-    ax1.semilogy(ow_v_twoway_snr, cl_k4t8, label=r'CL (R=1/2)', color='black', ls='-.', marker='o', markersize=8)
-    ax1.semilogy(ow_v_twoway_snr, twlin_k6t18, label=r'TWLIN (R=1/3)', color='green', marker='^', markersize=10)
-    ax1.semilogy(ow_v_twoway_snr, cl_k6t9, label=r'CL (R=2/3)', color='black', marker='^', markersize=10)
+    ax1.semilogy(ow_v_twoway_snr, ow_k4m4t8, label=r'ALC (R=4/8)', color='blue', ls='-.', marker='o', markersize=8)
+    ax1.semilogy(ow_v_twoway_snr, tw_k4m2t8, label=r'TWLC (R=4/16)', color='orange', ls='-.', marker='o', markersize=8)
+    ax1.semilogy(ow_v_twoway_snr, ow_k6m6t9, label=r'ALC (R=6/9)', color='blue', marker='^', markersize=10)
+    ax1.semilogy(ow_v_twoway_snr, tw_k6m3t9, label=r'TWLC (R=6/18)', color='orange', marker='^', markersize=10)
+    ax1.semilogy(ow_v_twoway_snr, cl_k4t8, label=r'CL (R=4/8)', color='black', ls='-.', marker='o', markersize=8)
+    ax1.semilogy(ow_v_twoway_snr, twlin_k4t16, label=r'TWLIN (R=4/16)', color='green', ls='-.', marker='o', markersize=8)
+    ax1.semilogy(ow_v_twoway_snr, cl_k6t9, label=r'CL (R=6/9)', color='black', marker='^', markersize=10)
+    ax1.semilogy(ow_v_twoway_snr, twlin_k6t18, label=r'TWLIN (R=6/18)', color='green', marker='^', markersize=10)
     ax1.set_xlabel(r'(a) OW vs TW: SNR$_1$=SNR$_2$', fontsize=12)
 
     ax4.semilogy(tw_comparison_snr2, twlc_fixsnr1_1_snr2_15, label='LC (Fixed)', color='blue', marker='o', markersize=8)
@@ -178,5 +178,6 @@ if __name__=='__main__':
         ax.tick_params(which='both')
         ax.grid(which='both')
         ax.legend()
+    
 
     plt.show()
