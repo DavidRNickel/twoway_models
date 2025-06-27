@@ -160,14 +160,14 @@ if __name__=='__main__':
     ax5.set_xlabel(r'(d) SNR$_1$=-1, K=6, T=18, R=1/3', fontsize=12, loc='center')
 
     ax3.semilogy(tw_comparison_snr2, twlc_k4m2t5_snr1_1, label=r'LC M=2', color='blue', marker='o', markersize=8)
-    ax3.semilogy(tw_comparison_snr2, twbaf_k4m2t5_snr1_1, label=r'BAF M=2', color='black', marker='o', markersize=8)
+    ax3.semilogy(tw_comparison_snr2, twbaf_k4m4t10_snr1_1, label=r'BAF M=4', color='black', marker='o', markersize=8)
     ax3.semilogy(tw_comparison_snr2, twrnn_k4m2t5_snr1_1, label=r'RNN M=2', color='orange', marker='o', markersize=8)
     ax3.semilogy(tw_comparison_snr2, twlin_l4k2t16_snr1_1, label=r'LIN M=2', color='green', marker='o', markersize=8)
     ax3.semilogy(tw_comparison_snr2, polar_k4m10_snr1_1, label='POL (OL)', color='red', marker='*', markersize=8)
     ax3.set_xlabel(r'(e) SNR$_1$=1, K=4, T=10, R=2/5', fontsize=12, loc='center')
 
     ax6.semilogy(tw_comparison_snr2, twlc_k4m2t5_snr1_n1, label=r'LC M=2', color='blue', marker='o', markersize=8)
-    ax6.semilogy(tw_comparison_snr2, twbaf_k4m2t5_snr1_n1, label=r'BAF M=2', color='black', marker='o', markersize=8)
+    ax6.semilogy(tw_comparison_snr2, twbaf_k4m4t10_snr1_n1, label=r'BAF M=4', color='black', marker='o', markersize=8)
     ax6.semilogy(tw_comparison_snr2, twrnn_k4m2t5_snr1_n1, label=r'RNN M=2', color='orange', marker='o', markersize=8)
     ax6.semilogy(tw_comparison_snr2, twlin_l4k2t16_snr1_n1, label=r'LIN M=2', color='green', marker='o', markersize=8)
     ax6.semilogy(tw_comparison_snr2, polar_k4m10_snr1_n1, label='POL (OL)', color='red', marker='*', markersize=8)
