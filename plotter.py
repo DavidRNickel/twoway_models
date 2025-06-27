@@ -64,6 +64,9 @@ if __name__=='__main__':
     twbaf_k4m2t5_snr1_1 = [2.01e-1, 6.25e-2, 1.94e-2, 1.49e-2, 3.10e-3, 3.00e-3]
     twbaf_k4m2t5_snr1_n1 = [3.30e-1, 1.74e-1, 1.48e-1, 1.12e-1, 9.84e-2, 9.45e-2]
 
+    twbaf_k4m4t10_snr1_1 = [1.07e-1, 5.37e-2, 1.67e-2, 1.93e-3, 1.60e-3, 2.41e-4]
+    twbaf_k4m4t10_snr1_n1 = [2.16e-1, 1.63e-1, 1.03e-1, 9.01e-2, 8.50e-2, 6.56e-2]
+
     # TWRNN
     # Results provided by J. Kim et al.
     bler1_proposed = [2.20E-02,2.21E-02,9.51E-04,6.42E-05,1.55E-05,2.64E-08]

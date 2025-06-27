@@ -158,7 +158,7 @@ if __name__=='__main__':
             optimizer.step()
             scheduler.step()
 
-            if i % 10 == 0:
+            if i % 100 == 0:
                 with torch.no_grad():
                     bit_estimates_1 = model.one_hot_to_bits(output_1).bool().view(bs,-1)
                     ber_1, bler_1 = model.calc_error_rates(bit_estimates_1, bitstreams_1.bool())
