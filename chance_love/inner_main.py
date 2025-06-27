@@ -8,8 +8,6 @@ import matplotlib.pyplot as plt
 from math import sqrt
 from tqdm import tqdm
 
-import sys
-
 from utils import calc_gamma_opt, calc_F, calc_q, calc_beta_opt, to_db
 
 
