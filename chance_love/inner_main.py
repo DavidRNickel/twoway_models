@@ -41,16 +41,21 @@ def decode_pam(recvd_syms, constel):
 
 if __name__=='__main__':
     num_datapoints = 1000000
+    modulation_order = 2
 
     T = 9 # total number of channel uses for user
-    L = 6 # total number of bits to send over T uses
-    N = 3 # number of channel uses per symbol 
-    modulation_order = 2
+    L = 6 # total number of bits to send over T uses; K in paper
+    N = 3 # number of channel uses per symbol; T_M in paper 
+
+    # For rate 1/2 setting
+    # T = 8 
+    # L = 4 
+    # N = 4 
 
     assert L*N/modulation_order == T # make sure you're using the right number of channel uses
     assert L % modulation_order == 0 # make sure you're accounting for all symbols 
     
-    M = 2**modulation_order # number of symbols in constellation
+    M = 2**modulation_order # number of symbols in constellation; NOT M from paper
     snr1_db = 5
     snr2_db = 5
     snr1_linear = 10**(snr1_db/10)
@@ -83,6 +88,7 @@ if __name__=='__main__':
             plt.hist(received_data.flatten(), bins=400)
             plt.show()
             print(f'BLER (per user): {np.mean((decoded_syms != data).sum(axis=1))}')
+            break
         decoded_syms = decode_pam(received_data, constellation).reshape(num_datapoints, L//modulation_order)
         blers.append((decoded_syms != data).sum(axis=1))
     bler = np.mean(blers)
