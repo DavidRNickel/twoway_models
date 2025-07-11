@@ -153,8 +153,6 @@ if __name__=='__main__':
     ax5.semilogy(tw_comparison_snr2, twlc_k6m2t6_snr1_n1, label=r'LC M=2', color='blue', ls='-.', marker='^', markersize=8)
     ax5.semilogy(tw_comparison_snr2, twbaf_k6m3t9_snr1_n1, label=r'BAF M=3', color='black', marker='o', markersize=8)
     ax5.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_n1, label=r'BAF M=2', color='black', ls='-.', marker='^', markersize=10)
-    # ax5.semilogy(tw_comparison_snr2, rnn_m6_snr1_n1, label=r'RNN M=6', color='orange', ls='-.', marker='^', markersize=10)
-    # ax5.semilogy(tw_comparison_snr2, rnn_m3_snr1_n1, label=r'RNN M=3', color='orange', marker='o', markersize=8)
     ax5.semilogy(tw_comparison_snr2, rnn_m3_snr1_n1, label=r'RNN M=3', color='orange', marker='o', markersize=8)
     ax5.semilogy(tw_comparison_snr2, rnn_m6_snr1_n1, label=r'RNN M=6', color='orange', ls='-.', marker='^', markersize=10)
     ax5.semilogy(tw_comparison_snr2, twlin_k3_snr1_n1, label=r'LIN M=3', color='green', marker='o', markersize=8)
