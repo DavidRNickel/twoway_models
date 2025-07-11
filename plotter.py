@@ -69,20 +69,20 @@ if __name__=='__main__':
 
     # TWRNN
     # Results provided by J. Kim et al.
-    bler1_proposed = [2.20E-02,2.21E-02,9.51E-04,6.42E-05,1.55E-05,2.64E-08]
-    bler2_proposed = [2.21E-02,2.53E-04,3.57E-04,1.36E-05,2.76E-07,2.03E-08]
-    rnn_m6_snr1_1 =  np.array(bler1_proposed)+ np.array(bler2_proposed)
-    
     bler1_proposed = [6.84E-02,6.78E-02,7.60E-04,2.4e-6,1.79E-07,1.88E-08]
     bler2_proposed = [6.84E-02,8.94E-04,3.40E-04,2.8e-6,3.00E-09,1.51E-09]
     rnn_m3_snr1_1 =  np.array(bler1_proposed)+ np.array(bler2_proposed)
 
-    bler1_proposed = [1.15E-01,1.16E-01,2.58E-02,1.15E-02,2.14E-03,9.19E-04]
-    bler2_proposed = [2.19E-02,1.98E-04,3.09E-03,1.09E-03,2.60E-04,1.11E-05]
-    rnn_m3_snr1_n1 = np.array(bler1_proposed)+ np.array(bler2_proposed)
+    bler1_proposed = [2.20E-02,2.21E-02,9.51E-04,6.42E-05,1.55E-05,2.64E-08]
+    bler2_proposed = [2.21E-02,2.53E-04,3.57E-04,1.36E-05,2.76E-07,2.03E-08]
+    rnn_m6_snr1_1 =  np.array(bler1_proposed)+ np.array(bler2_proposed)
     
     bler1_proposed = [2.22E-01,1.85E-01,3.78E-02,1.47E-02,6.31E-03,6.59E-03]
     bler2_proposed = [6.82E-02,8.44E-03,2.46E-03,7.16E-04,7.50E-05,2.32E-06]
+    rnn_m3_snr1_n1 = np.array(bler1_proposed)+ np.array(bler2_proposed)
+
+    bler1_proposed = [1.15E-01,1.16E-01,2.58E-02,1.15E-02,2.14E-03,9.19E-04]
+    bler2_proposed = [2.19E-02,1.98E-04,3.09E-03,1.09E-03,2.60E-04,1.11E-05]
     rnn_m6_snr1_n1 = np.array(bler1_proposed)+ np.array(bler2_proposed)
 
     twrnn_k4m2t5_snr1_1 = [1.01e-1, 5.19e-2, 8.62e-3, 2.71e-3, 2.22e-3, 7.60e-4]
@@ -153,8 +153,10 @@ if __name__=='__main__':
     ax5.semilogy(tw_comparison_snr2, twlc_k6m2t6_snr1_n1, label=r'LC M=2', color='blue', ls='-.', marker='^', markersize=8)
     ax5.semilogy(tw_comparison_snr2, twbaf_k6m3t9_snr1_n1, label=r'BAF M=3', color='black', marker='o', markersize=8)
     ax5.semilogy(tw_comparison_snr2, twbaf_k6m2t6_snr1_n1, label=r'BAF M=2', color='black', ls='-.', marker='^', markersize=10)
-    ax5.semilogy(tw_comparison_snr2, rnn_m6_snr1_n1, label=r'RNN M=3', color='orange', marker='o', markersize=8)
-    ax5.semilogy(tw_comparison_snr2, rnn_m3_snr1_n1, label=r'RNN M=6', color='orange',ls='-.', marker='^', markersize=10)
+    # ax5.semilogy(tw_comparison_snr2, rnn_m6_snr1_n1, label=r'RNN M=6', color='orange', ls='-.', marker='^', markersize=10)
+    # ax5.semilogy(tw_comparison_snr2, rnn_m3_snr1_n1, label=r'RNN M=3', color='orange', marker='o', markersize=8)
+    ax5.semilogy(tw_comparison_snr2, rnn_m3_snr1_n1, label=r'RNN M=3', color='orange', marker='o', markersize=8)
+    ax5.semilogy(tw_comparison_snr2, rnn_m6_snr1_n1, label=r'RNN M=6', color='orange', ls='-.', marker='^', markersize=10)
     ax5.semilogy(tw_comparison_snr2, twlin_k3_snr1_n1, label=r'LIN M=3', color='green', marker='o', markersize=8)
     ax5.semilogy(tw_comparison_snr2, polar_k6m18_snr1_n1, label='POL (OL)', color='red', marker='*', markersize=8)
     ax5.set_xlabel(r'(d) SNR$_1$=-1, K=6, T=18, R=1/3', fontsize=12, loc='center')
