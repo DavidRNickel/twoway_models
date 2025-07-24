@@ -107,8 +107,8 @@ class GTWC(nn.Module):
         self.wgt_pwr_normed_2 = torch.sqrt(1e-8 + self.wgt_pwr_2**2 * (self.T) / (self.wgt_pwr_2**2).sum())
 
         if noise_ff is None:
-            noise_ff = sqrt(self.noise_pwr_ff) * torch.randn((self.batch_size, self.num_blocks, self.T), device=self.device)
-            noise_fb = sqrt(self.noise_pwr_fb) * torch.randn((self.batch_size, self.num_blocks, self.T), device=self.device)
+            noise_ff = sqrt(self.noise_pwr_ff) * torch.randn((self.batch_size, self.num_blocks, self.T), device=self.device, requires_grad=False)
+            noise_fb = sqrt(self.noise_pwr_fb) * torch.randn((self.batch_size, self.num_blocks, self.T), device=self.device, requires_grad=False)
 
         self.recvd_y_1 = None # dummy initializations; populated in process_bits_rx()
         self.recvd_y_2 = None
@@ -146,7 +146,6 @@ class GTWC(nn.Module):
         else:
             dec_out_1, dec_out_2 = self.decode_received_symbols(torch.cat((self.recvd_y_2, bitstreams_2), axis=2),
                                                                 torch.cat((self.recvd_y_1, bitstreams_1), axis=2))
-
 
         return dec_out_1, dec_out_2
 

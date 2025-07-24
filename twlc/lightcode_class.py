@@ -11,6 +11,12 @@ import sys
 
 from enc_dec_block import EncDecBlock
 
+#
+# print to stderr during training
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+
+
 class Lightcode(nn.Module):
     def __init__(self,conf):
         super(Lightcode,self).__init__()
